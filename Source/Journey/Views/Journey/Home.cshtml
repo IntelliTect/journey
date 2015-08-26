@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_JourneyHome.cshtml";
+}
+@section HeaderLeft{
+    <h1 style="margin-top:35px;">Home</h1>
+}
+
+@section HeaderRight{
+    <div class="btn-group pull-right">
+        <a class="btn btn-default" href="~/journey/logs">Logs</a>
+    </div>
+}
+
+<div data-journey-script="home" id="home" style="width:300px;">
+
+    @Html.ActionLink("Documentation", "Docs")
+
+</div>

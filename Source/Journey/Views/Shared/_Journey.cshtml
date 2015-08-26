@@ -1,0 +1,118 @@
+﻿ @*Intellitect Journey master layout page*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/intellitect.journey.css" />
+    @RenderSection("Styles", false)
+    <meta name="description" content="Page SEO description" />
+</head>
+
+<body>
+    <div id="busy-overlay" style="display:none;">
+        <div id=""></div>
+    </div>
+    <div id="busy-fail-overlay" style="display:none;">
+        <div id="" style="position:relative; height: 100%; width:100%;">
+            <div id="busy-fail-overlay-content">
+                <div>Really sorry about this</div>
+                <div>It looks like we wandered into uncharted territory.</div>
+                <hr/>
+                <div>We'll take you back to a more familiar spot in a few moments.</div>
+                <button id="refresh-now" class="btn btn-success">Let's go now!</button>
+                <button id="refresh-cancel" class="btn btn-danger">Actually, I'll just wait</button>
+                <div id="refresh-on-the-way" style="color:green;" >Headed there now...</div>
+            </div>
+        </div>
+    </div>
+    <div id="journey-shell" class="">
+        <div id="journey-side-bar" class="journey-full-height">
+            <div class="sidebar-scroller journey-full-height">
+                <div id="time-info">
+                    <div class="journey-title" id="CurrentTime"> </div>
+                    <div class="journey-title" id="CurrentTimeZone"> </div>
+                </div>
+                <div id="connection-warning-area">
+                    <div id="bad-connection-indicator" style="display:none;">
+                        Connection<br/>Lost
+                    </div>
+                </div>
+                <!-- This is the main menu area. -->
+                <ul>
+                    @RenderBody()
+                </ul>
+            </div>
+        </div>
+
+        <div id="journey-popout" class="journey-full-height" style="width:0px; display:none;">
+            <div class="journey-popout-container journey-full-height">
+                <div class="journey-popout-control">
+                    <div class="journey-popout-title"></div>
+                    <div class="journey-popout-close ">X</div>
+                    <div style="clear:both; "></div> <!-- clears the floats above.-->
+                </div>
+                <div class="journey-inner-content journey-parent-height"></div>
+            </div>
+        </div>
+
+        <div id="journey-main-content" class="journey-full-height">
+            <div id="journey-home-area" class="journey-page">
+            </div>
+            <!--
+                      These Divs Have to be together to eliminate a white space
+            -->
+            <div id="journey-main-content-padding">
+                <div id="journey-busy-indicator" style="display:none;">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                        <div class="bounce4"></div>
+                        <div class="bounce5"></div>
+                        <div class="bounce6"></div>
+                        <div class="bounce7"></div>
+                        <div class="bounce8"></div>
+                        <div class="bounce9"></div>
+                        <div class="bounce10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+
+    </div>
+
+
+
+
+    <!-- Page Template -->
+    <div id="journey-page-template" class="journey-data-content">
+        <div class="journey-page journey-custom-page" style=" display:none;">
+            <div class="journey-page-control">
+                <div class="journey-tool-close">X</div>
+                <!--
+                    <div>O</div>
+                    <div>*</div>
+                    -->
+                <div style="clear:both; "></div> <!-- clears the floats above.-->
+            </div>
+            <div class="journey-page-content">
+                <!-- Content for the pages goes here -->
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
+    <script src="~/scripts/intellitect.journey.js"></script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>
