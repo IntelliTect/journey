@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Journey";
+    Layout = "~/Views/Shared/_Journey.cshtml";
+}
+
+@section Styles {
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    }
+
+<li data-home-content-url="@Url.Content("~/journey/home")"
+    class="journey-default">
+    <img src="~/Content/img/home.png" />
+    <div class="journey-title">Home</div>
+</li>
+<li data-home-content-url="@Url.Content("~/journey/docs")">
+        <img src="~/Content/img/doc.png" />
+    <div class="journey-title">Documentation</div>
+</li>
+
+<li id="notifications-menu-item" data-content-id="NotificationsContent" style="position:relative;">
+    <img src="~/Content/img/notification.png" />
+    <div class="journey-title">Notifications</div>
+</li>
+
+<li data-home-content-url="@Url.Content("~/journey/admin")">
+    <img src="~/Content/img/admin.png" />
+    <div class="journey-title">Admin</div>
+</li>
+
+<li data-content-id="Test">
+    <img src="~/Content/img/test.png" />
+    <div class="journey-title">Test</div>
+</li>
+
+<li data-home-content-url="@Url.Content("~/journey/user")">
+    <img src="~/Content/img/user.png" />
+    <div class="journey-title">User Name</div>
+</li>
+
+
+<!-- Popup menus -->
+@Html.Partial("~/Views/Journey/NotificationsPopover.cshtml", null)
+
+@Html.Partial("~/Views/Journey/TestPopover.cshtml", null)
+
+@section Scripts {
+    <script src="~/Scripts/bootstrap.min.js"></script>
+}
+
