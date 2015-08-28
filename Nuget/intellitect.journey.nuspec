@@ -11,6 +11,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>The goal of this framework is to allow users to create single page applications using regular MVC pages without the need to learn complex heavy-weight SPA frameworks.</description>
         <summary>Simple SPA framework for creating Azure-style navigation applications.</summary>
+        <releaseNotes>For help getting started use the Intellitect.Journey.Jumpstart NuGet package.</releaseNotes>
         <copyright>2015 IntelliTect</copyright>
         <language />
         <dependencies>
