@@ -18,10 +18,10 @@
     <files>
         <file src="..\Source\Journey\Content\journey\intellitect.journey.css" target="content\Content\journey\intellitect.journey.css" />
         <file src="..\Source\Journey\Content\journey\intellitect.journey.theme.css" target="content\Content\journey\intellitect.journey.theme.css" />
-        <file src="..\Source\Journey\IntelliTect\Journey.cs" target="content\Content\IntelliTect\Journey.cs" />
-        <file src="..\Source\Journey\Scripts\intellitect.journey.js" target="content\Content\Scripts\intellitect.journey.js" />
-        <file src="..\Source\Journey\Views\Shared\_Journey.cshtml" target="content\Content\Views\Shared\_Journey.cshtml" />
-        <file src="..\Source\Journey\Views\Shared\_JourneyHome.cshtml" target="content\Content\Views\Shared\_JourneyHome.cshtml" />
-        <file src="..\Source\Journey\Views\Shared\_JourneyPage.cshtml" target="content\Content\Views\Shared\_JourneyPage.cshtml" />
+        <file src="..\Source\Journey\IntelliTect\Journey.cs" target="content\IntelliTect\Journey.cs" />
+        <file src="..\Source\Journey\Views\Shared\_Journey.cshtml" target="content\Views\Shared\_Journey.cshtml" />
+        <file src="..\Source\Journey\Views\Shared\_JourneyHome.cshtml" target="content\Views\Shared\_JourneyHome.cshtml" />
+        <file src="..\Source\Journey\Views\Shared\_JourneyPage.cshtml" target="content\Views\Shared\_JourneyPage.cshtml" />
+        <file src="..\Source\Journey\Scripts\intellitect.journey.js" target="content\Scripts\intellitect.journey.js" />
     </files>
 </package>

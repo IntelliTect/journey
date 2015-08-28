@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>intellitect.journey.jumpstart</id>
+        <version>0.0.1</version>
+        <title>Journey SPA Framework Jumpstart</title>
+        <authors>Grant Erickson</authors>
+        <owners>IntelliTect</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>This package will add a journey controller to the project as a simple of how to utilize the framework.</description>
+        <summary>Jumpstart for using the Journey SPA framework.</summary>
+        <copyright>2015 IntelliTect</copyright>
+        <language />
+        <dependencies>
+            <dependency id="jQuery" version="1.9.1" />
+            <dependency id="bootstrap" version="3.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\Source\Journey\Content\img\admin.png" target="content\Content\img\admin.png" />
+        <file src="..\Source\Journey\Content\img\doc.png" target="content\Content\img\doc.png" />
+        <file src="..\Source\Journey\Content\img\home.png" target="content\Content\img\home.png" />
+        <file src="..\Source\Journey\Content\img\notification.png" target="content\Content\img\notification.png" />
+        <file src="..\Source\Journey\Content\img\test.png" target="content\Content\img\test.png" />
+        <file src="..\Source\Journey\Content\img\user.png" target="content\Content\img\user.png" />
+        <file src="..\Source\Journey\Controllers\JourneyController.cs" target="content\Controllers\JourneyController.cs" />
+        <file src="..\Source\Journey\Views\Journey\Admin.cshtml" target="content\Views\Journey\Admin.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Content.cshtml" target="content\Views\Journey\Content.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Docs.cshtml" target="content\Views\Journey\Docs.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Home.cshtml" target="content\Views\Journey\Home.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Index.cshtml" target="content\Views\Journey\Index.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\JsRefresh.cshtml" target="content\Views\Journey\JsRefresh.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Logs.cshtml" target="content\Views\Journey\Logs.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\NotificationsPopover.cshtml" target="content\Views\Journey\NotificationsPopover.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\TestPopover.cshtml" target="content\Views\Journey\TestPopover.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\User.cshtml" target="content\Views\Journey\User.cshtml" />
+    </files>
+</package>
