@@ -2,13 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Intellitect.Journey</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>Journey SPA Framework</title>
         <authors>Grant Erickson</authors>
         <owners>IntelliTect</owners>
+        <licenseUrl>https://raw.githubusercontent.com/IntelliTect/journey/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/IntelliTect/journey/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>The goal of this framework is to allow users to create a single page application using regular MVC pages without the need to learn complex heavy-weight SPA frameworks.</description>
-        <summary>Simple SPA framework for creatingAzure style navigation applications.</summary>
+        <description>The goal of this framework is to allow users to create single page applications using regular MVC pages without the need to learn complex heavy-weight SPA frameworks.</description>
+        <summary>Simple SPA framework for creating Azure-style navigation applications.</summary>
         <copyright>2015 IntelliTect</copyright>
         <language />
         <dependencies>

@@ -2,10 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Intellitect.Journey.Jumpstart</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>Journey SPA Framework Jumpstart</title>
         <authors>Grant Erickson</authors>
         <owners>IntelliTect</owners>
+        <licenseUrl>https://raw.githubusercontent.com/IntelliTect/journey/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/IntelliTect/journey/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This package will add a journey controller to the project as a simple of how to utilize the framework.</description>
         <summary>Jumpstart for using the Journey SPA framework.</summary>
