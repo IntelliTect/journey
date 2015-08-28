@@ -25,7 +25,7 @@ namespace Journey.Controllers
             return View();
         }
 
-        public ActionResult User()
+        public ActionResult UserInfo()
         {
             return View();
         }

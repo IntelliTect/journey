@@ -261,7 +261,7 @@
     <Content Include="Views\Journey\NotificationsPopover.cshtml" />
     <Content Include="Views\Journey\Admin.cshtml" />
     <Content Include="Views\Journey\Home.cshtml" />
-    <Content Include="Views\Journey\User.cshtml" />
+    <Content Include="Views\Journey\UserInfo.cshtml" />
     <Content Include="Views\Journey\Docs.cshtml" />
     <Content Include="Views\Shared\_JourneyHome.cshtml" />
     <Content Include="Views\Shared\_JourneyPage.cshtml" />
