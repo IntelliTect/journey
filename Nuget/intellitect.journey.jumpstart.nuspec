@@ -37,5 +37,6 @@
         <file src="..\Source\Journey\Views\Journey\NotificationsPopover.cshtml" target="content\Views\Journey\NotificationsPopover.cshtml" />
         <file src="..\Source\Journey\Views\Journey\TestPopover.cshtml" target="content\Views\Journey\TestPopover.cshtml" />
         <file src="..\Source\Journey\Views\Journey\User.cshtml" target="content\Views\Journey\User.cshtml" />
+        <file src="readme.txt" target="readme.txt" />
     </files>
 </package>
