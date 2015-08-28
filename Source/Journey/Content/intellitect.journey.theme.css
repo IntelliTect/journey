@@ -1,0 +1,138 @@
+﻿/* Intellitect Journey framework theme css */
+/* Copy and modify this file to change the color scheme, fonts, etc.*/
+
+body {
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+    #busy-overlay div {
+        background-image: url('./img/busy.gif');
+    }
+
+
+#journey-shell {
+    background-color: #202020;
+    color: #888;
+}
+
+.journey-full-height {
+}
+
+#journey-side-bar {
+    background-color: #222;
+    border-left: 1px solid black;
+}
+
+        #journey-side-bar #connection-warning-area #bad-connection-indicator {
+            font-size: 1em;
+            color: red;
+        }
+
+
+        #journey-side-bar ul li {
+            border-bottom: 2px groove #333;
+            border-top: 2px groove #333;
+            font-size: .7em;
+        }
+
+            #journey-side-bar ul li:hover {
+                background-color: #363636;
+            }
+
+            #journey-side-bar ul li div.journey-title {
+                margin-top:4px;
+                color: #aaa;
+            }
+
+#journey-popout {
+    background-color: #363636;
+    opacity: .97;
+}
+
+
+    #journey-popout div.journey-popout-control {
+        font-size: 1.5em;
+    }
+
+        #journey-popout div.journey-popout-control div.journey-popout-close {
+            font-size: .9em;
+            font-weight: bold;
+        }
+
+            #journey-popout div.journey-popout-control div.journey-popout-close:hover {
+                color: #ddd;
+                cursor: pointer;
+                background-color: #222;
+                background-color: rgba(255, 255, 255, .1);
+                font-weight: bolder;
+            }
+
+
+    #journey-main-content h1, #journey-main-content h2, #journey-main-content h3, #journey-main-content h4 {
+        font-weight: 400;
+    }
+
+
+    #journey-main-content div.journey-page {
+        border-left: 0px solid #888;
+        border-right: 0px solid #888;
+    }
+
+
+
+
+    #journey-main-content div.journey-page-control {
+        background-color: black;
+    }
+
+            #journey-main-content div.journey-page-control div.journey-tool-close:hover {
+                color: #ddd;
+                cursor: pointer;
+                background-color: #222;
+                background-color: rgba(255, 255, 255, .1);
+                font-weight:bolder ;
+            }
+
+    #journey-main-content div.journey-page-content {
+        background: linear-gradient(to right, #333, #555);
+    }
+
+        #journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-title {
+            font-size: 1.5em;
+            color: #ddd;
+        }
+
+        #journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-subtitle {
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+    #journey-main-content div.journey-page div.journey-page-content div.journey-page-body {
+        background: linear-gradient(to right, #444, #666);
+        color: #222;
+    }
+
+    #journey-main-content #journey-home-area {
+        background: linear-gradient(to right, #469, #57a);
+    }
+
+div.journey-home-header {
+    background-color: transparent;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+div.journey-home-header a.journey-avatar-menu-header div.journey-avatar-text {
+    font-size: .7em;
+}
+
+div.journey-avatar-text {
+    color: white;
+}
+
+div.journey-avatar-timezone {
+    font-size: .9em;
+}
+
+    .spinner > div {
+        background-color: #666;
+    }

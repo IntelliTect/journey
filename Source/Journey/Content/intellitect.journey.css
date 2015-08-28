@@ -3,7 +3,6 @@
 body {
     margin: 0px;
     padding: 0px;
-    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* This works around a strange behavior with jQuery that reports a 
@@ -85,8 +84,6 @@ a {
 #journey-shell {
     width: 100%;
     height: 100%;
-    background-color: #202020;
-    color: #888;
 }
 
 .journey-full-height {
@@ -95,8 +92,6 @@ a {
 #journey-side-bar {
     float: left;
     width: 100px;
-    background-color: #222;
-    border-left: 1px solid black;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -128,9 +123,7 @@ a {
 
         #journey-side-bar #connection-warning-area #bad-connection-indicator {
             width: 100%;
-            font-size: 1em;
             text-align: center;
-            color: red;
             height: 30px;
         }
 
@@ -146,15 +139,8 @@ a {
         #journey-side-bar ul li {
             width: 100%;
             height: 100px;
-            border-bottom: 2px groove #333;
-            border-top: 2px groove #333;
             margin-bottom: 3px;
-            font-size: .7em;
         }
-
-            #journey-side-bar ul li:hover {
-                background-color: #363636;
-            }
 
             #journey-side-bar ul li img {
                 width: 50px;
@@ -167,17 +153,13 @@ a {
                 width: 100px;
                 text-align: center;
                 text-transform: uppercase;
-                margin-top:4px;
-                color: #aaa;
             }
 
 #journey-popout {
     position: absolute;
     left: 101px;
     top: 0px;
-    background-color: #363636;
     z-index: 1000;
-    opacity: .97;
 }
 
     #journey-popout div.journey-popout-container {
@@ -187,7 +169,6 @@ a {
     }
 
     #journey-popout div.journey-popout-control {
-        font-size: 1.5em;
         width: 100%;
         margin-bottom: 10px;
         padding-top: 40px;
@@ -200,18 +181,7 @@ a {
         #journey-popout div.journey-popout-control div.journey-popout-close {
             float: right;
             padding: 3px;
-            font-size: .9em;
-            font-weight: bold;
         }
-
-            #journey-popout div.journey-popout-control div.journey-popout-close:hover {
-                color: #ddd;
-                cursor: pointer;
-                background-color: #222;
-                background-color: rgba(255, 255, 255, .1);
-                font-weight: bolder;
-            }
-
 
     #journey-popout div.journey-inner-content {
         width: 100%;
@@ -247,8 +217,6 @@ div.journey-data-content {
 
     #journey-main-content div.journey-page {
         display: inline-block;
-        border-left: 0px solid #888;
-        border-right: 0px solid #888;
         overflow-y: hidden;
         overflow-x: hidden;
         margin-left: 3px;
@@ -260,7 +228,6 @@ div.journey-data-content {
     #journey-main-content div.journey-page-control {
         width: 100%;
         height: 0px;
-        background-color: black;
     }
 
         #journey-main-content div.journey-page-control div.journey-tool-close {
@@ -273,18 +240,6 @@ div.journey-data-content {
             text-align: center;
             font-weight: bold;
         }
-
-            #journey-main-content div.journey-page-control div.journey-tool-close:hover {
-                color: #ddd;
-                cursor: pointer;
-                background-color: #222;
-                background-color: rgba(255, 255, 255, .1);
-                font-weight:bolder ;
-            }
-
-    #journey-main-content div.journey-page-content {
-        background: linear-gradient(to right, #333, #555);
-    }
 
     #journey-main-content div.journey-page div.journey-page-content div.journey-page-header {
         height: 100px;
@@ -301,14 +256,7 @@ div.journey-data-content {
     }
 
         #journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-title {
-            font-size: 1.5em;
-            color: #ddd;
             width: 100%;
-        }
-
-        #journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-subtitle {
-            font-size: 1.1em;
-            color: #ccc;
         }
 
     #journey-main-content div.journey-page div.journey-page-content div.journey-page-body {
@@ -317,28 +265,19 @@ div.journey-data-content {
         padding-right: 25px;
         padding-top: 20px;
         padding-bottom: 20px;
-        background: linear-gradient(to right, #444, #666);
         overflow-y: auto;
         overflow-x: hidden;
-        color: #222;
-        white-space: normal;
     }
 
     #journey-main-content #journey-home-area {
-        background-color: cornflowerblue;
         padding-left: 25px;
         padding-right: 25px;
-        /* padding-top: 25px; This pushes down other pages. */
-        /* color: #fff; */
         overflow-y: auto;
         overflow-x: hidden;
         white-space:normal;
     }
 
     #journey-main-content #journey-busy-indicator {
-        /*background-image: url('./img/busy.gif');
-        background-repeat: no-repeat;
-        background-position: center;*/
         width: 200px;
         border-right: none;
         height: 100%;
@@ -348,8 +287,6 @@ div.journey-data-content {
 div.journey-home-header {
     height: 90px;
     margin-bottom: 20px;
-    background-color: transparent;
-    background-color: rgba(0, 0, 0, .5);
     margin-left: -25px;
     margin-right: -25px;
     padding-left: 25px;
@@ -366,8 +303,6 @@ div.journey-home-header {
         padding-top: 40px;
     }
 
-div.home-header a.avatar-menu-header {
-}
 
 div.journey-home-header a.journey-avatar-menu-header img.journey-avatar {
     height: 30px;
@@ -377,17 +312,11 @@ div.journey-home-header a.journey-avatar-menu-header img.journey-avatar {
 
 div.journey-home-header a.journey-avatar-menu-header div.journey-avatar-text {
     float: right;
-    font-size: .7em;
     margin-right: 5px;
-}
-
-div.journey-avatar-text {
-    color: white;
 }
 
 div.journey-avatar-timezone {
     margin-top: 32px;
-    font-size: .9em;
     margin-right: 1px;
 }
 
@@ -406,9 +335,7 @@ div.journey-avatar-timezone {
 
 
 .spinner {
-    /*margin: 100px auto 0;*/
     width: 300px;
-    /*text-align: center;*/
     height: 18px;
     position: relative;
     top: 50%;
@@ -420,7 +347,6 @@ div.journey-avatar-timezone {
         width: 14px;
         height: 14px;
         margin-left: 4px;
-        background-color: #666;
         border-radius: 100%;
         float: left;
         -webkit-animation: bouncedelay 1.7s infinite ease-in-out;
