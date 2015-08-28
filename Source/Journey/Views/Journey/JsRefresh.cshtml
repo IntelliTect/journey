@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Logs";
+    Layout = "~/Views/Shared/_JourneyPage.cshtml";
+}
+
+
+@section Header{
+    <span>JS Refresh Page</span>
+}
+
+
+
+
+<div class="journey-page-body" data-journey-script="js-refresh" style="width:500px;">
+    <div class="panel panel-warning">
+        <div class="panel-heading">Page with JavaScript refresh</div>
+        <div class="panel-body">
+            <p id="time">It is now: @DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")</p>
+            <button id="refresh-demo" class="btn btn-success btn-lg">Refresh SPA</button>
+            <button id="refresh-spa-demo" class="btn btn-success btn-lg">Refresh Page</button>
+        </div>
+ </div>
+
+<script>
+    journey.register("js-refresh", {
+        load:
+            function () {
+                alert("JS Refresh is loading")
+                $("#time").text("It is now: " + new Date());
+
+                $("#refresh-demo").click(function () {
+                    journey.refresh();
+                });
+                $("#refresh-spa-demo").click(function () {
+                    journey.refreshPage("js-refresh");
+                });
+            },
+        unload:
+            function () {
+                alert("JS Refresh is unloading");
+            },
+        refresh:
+            function () {
+                alert("JS Refresh is refreshing");
+                $("#time").text("It is now: " + new Date());
+            }
+    });
+</script>

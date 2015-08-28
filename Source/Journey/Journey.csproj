@@ -200,8 +200,8 @@
     <Content Include="Content\img\home.png" />
     <Content Include="Content\img\notification.png" />
     <Content Include="Content\img\user.png" />
-    <Content Include="Content\intellitect.journey.theme.css" />
-    <Content Include="Content\intellitect.journey.css" />
+    <Content Include="Content\journey\intellitect.journey.theme.css" />
+    <Content Include="Content\journey\intellitect.journey.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,10 +266,10 @@
     <Content Include="Views\Shared\_JourneyHome.cshtml" />
     <Content Include="Views\Shared\_JourneyPage.cshtml" />
     <Content Include="Views\Journey\Logs.cshtml" />
+    <Content Include="Views\Journey\Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\journey\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

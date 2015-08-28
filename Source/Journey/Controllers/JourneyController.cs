@@ -39,5 +39,13 @@ namespace Journey.Controllers
         {
             return View();
         }
+        public ActionResult Content()
+        {
+            return View();
+        }
+        public ActionResult JsRefresh()
+        {
+            return View();
+        }
     }
 }

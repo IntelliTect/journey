@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Logs";
+    Layout = "~/Views/Shared/_JourneyPage.cshtml";
+}
+
+
+@section Header{
+    <span>A Content Page</span>
+}
+
+
+
+
+<div class="journey-page-body" data-journey-script="content" style="width:500px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>Content using Bootstrap!</h2>
+        </div>
+        <table class="table">
+            <tr>
+                <td>Some table Content</td>
+                <td>Col #2</td>
+            </tr>
+            <tr>
+                <td>Another Row</td>
+                <td>Another Column</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-body">
+            <button id="show-busy" class="btn btn-primary">Do small busy stuff.</button>
+            <button id="show-busy-overlay" class="btn btn-success btn-lg">Do large busy stuff.</button>
+            <p>Busy animations are done with css.</p>
+            <p>It is now: @DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")</p>
+            <button id="refresh-page" class="btn btn-success btn-lg">Refresh Page</button>
+            <button id="refresh-spa" class="btn btn-success btn-lg">Refresh Spa</button>
+            <p>This page unloads and reloads from the server when refreshed.</p>
+            @Html.ActionLink("Check out a Java Script based refresh", "JsRefresh", null, new { @class = "btn btn-default" })
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    journey.register("content", {
+        load:
+            function () {
+                alert("Content is loading")
+
+                $("#show-busy").click(function () {
+                    journey.showBusy();
+                    setTimeout(journey.hideBusy, 3000);
+                });
+                $("#show-busy-overlay").click(function () {
+                    journey.showBusyOverlay();
+                    setTimeout(journey.hideBusyOverlay, 3000);
+                });
+                $("#refresh-spa").click(function () {
+                    journey.refresh();
+                });
+                $("#refresh-page").click(function () {
+                    journey.refreshPage("content");
+                });
+            },
+        unload:
+            function () {
+                alert("Content is unloading");
+            },
+        refresh: null
+            // Because this is commented out, the page refreshes from the server.
+            // Otherwise this function would be called.
+            //function () {
+            //    alert("Content is refreshing");
+            //}
+    });
+</script>

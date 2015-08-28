@@ -53,17 +53,34 @@ function Journey() {
         refreshPages();
     };
 
+    // Refreshes all the displayed pages.
+    journey.refreshPage = function (pageName) {
+        var ranScript = false;
+        for (var iPage in journeyPages) {
+            if (journeyPages[iPage].page.journeyScriptName == pageName) {
+                if (journeyPages[iPage].page.runRefreshScript()) {
+                    ranScript = true;
+                }
+                break;
+            }
+        }
+        if (!ranScript) {
+            // This page doesn't have a refresh, reload it.
+            journeyPages[iPage].refreshPage();
+        }
+    };
+
     // Loads a page into the Journey framework.
     journey.pageLoad = function (pageName, pageLoadCallback) {
         var found = false;
         for (var i in pageLoads) {
             if (pageLoads[i].pageName == pageName) {
-                found = true; break;
+                // Remove it
+                pageLoads.splice(i, 1);
+                break;
             }
         }
-        if (!found) {
-            pageLoads.push({ pageName: pageName, pageLoadCallback: pageLoadCallback });
-        }
+        pageLoads.push({ pageName: pageName, pageLoadCallback: pageLoadCallback });
     };
 
     // Removes a page from the Journey framework
@@ -71,12 +88,12 @@ function Journey() {
         var found = false;
         for (var i in pageUnloads) {
             if (pageUnloads[i].pageName == pageName) {
-                found = true; break;
+                // Remove it
+                pageUnloads.splice(i, 1);
+                break;
             }
         }
-        if (!found) {
-            pageUnloads.push({ pageName: pageName, pageUnloadCallback: pageUnloadCallback });
-        }
+        pageUnloads.push({ pageName: pageName, pageUnloadCallback: pageUnloadCallback });
     };
 
     // Adds a page refresh callback to the collection.
@@ -84,13 +101,27 @@ function Journey() {
         var found = false;
         for (var i in pageRefreshes) {
             if (pageRefreshes[i].pageName == pageName) {
-                found = true; break;
+                // Remove it
+                pageRefreshes.splice(i, 1);
+                break;
             }
         }
-        if (!found) {
-            pageRefreshes.push({ pageName: pageName, pageRefreshCallback: pageRefreshCallback });
-        }
+        pageRefreshes.push({ pageName: pageName, pageRefreshCallback: pageRefreshCallback });
     };
+
+    journey.register = function (pageName, callbacks) {
+        if (callbacks) {
+            if (callbacks.load && $.isFunction(callbacks.load)) {
+                journey.pageLoad(pageName, callbacks.load);
+            }
+            if (callbacks.unload && $.isFunction(callbacks.unload)) {
+                journey.pageUnload(pageName, callbacks.unload);
+            }
+            if (callbacks.refresh && $.isFunction(callbacks.refresh)) {
+                journey.pageRefresh(pageName, callbacks.refresh);
+            }
+        }
+    }
 
     // Run the script callback for a page load.
     journey.runLoadScript = function (page) {
@@ -222,8 +253,8 @@ function Journey() {
                             } else if (result.replace(/&amp;/g, "&").indexOf('action="' + url + '"') > -1) {
                                 // Replace the encoded ampersands above in the content coming back.
                                 // Replace the content of the page.
-                                page.Page.runUnloadScript();
-                                page.Page.html = result;
+                                page.page.runUnloadScript();
+                                page.page.html = result;
                                 page.setContent();
                             } else {
                                 // Post the content as a page.'
@@ -306,7 +337,7 @@ function Journey() {
             loadHomePage(homePage.url);
         }
         for (var iPage in journeyPages) {
-            if (!journeyPages[iPage].Page.runRefreshScript()) {
+            if (!journeyPages[iPage].page.runRefreshScript()) {
                 // This page doesn't have a refresh, reload it.
                 journeyPages[iPage].refreshPage();
             }
@@ -477,7 +508,7 @@ function Journey() {
     };
 
     function showBusyOverlayAfterDelay() {
-        $('#busy-overlay').fadeIn(100);
+        $('#journey-busy-overlay').fadeIn(100);
         journey.setHeights();
         clearTimeout(busyOverlayFailureTimeout);
         busyOverlayFailureTimeout = setTimeout(busyFailed, busyOverlayFailureTimeoutInSeconds * 1000);
@@ -529,7 +560,7 @@ function Journey() {
         clearTimeout(busyOverlayTimout);
         clearTimeout(busyOverlayFailureTimeout);
         busyOverlayTimout = 0;
-        $('#busy-overlay').fadeOut(100);
+        $('#journey-busy-overlay').fadeOut(100);
     };
 
     // Call this if an underlying connection failed. 
@@ -539,7 +570,7 @@ function Journey() {
             if (immediate) {
                 setConnectionBad();
             } else if (connectionBadTimeout == 0) {
-                connectionBadTimeout = setTimeout(function() {
+                connectionBadTimeout = setTimeout(function () {
                     setConnectionBad();
                 }, connectionBadWaitInSeconds * 1000);
             }
@@ -574,24 +605,24 @@ function Journey() {
 
         // Did we get a url or a full page?
         if (urlOrContent.indexOf('<body>') > -1 || urlOrContent.indexOf('<div>') > -1) {
-            selfJourneyPage.Page = new Page(urlOrContent, insertPage);
+            selfJourneyPage.page = new Page(urlOrContent, insertPage);
         } else {
             selfJourneyPage.url = urlOrContent;
-            selfJourneyPage.Page = new Page(urlOrContent, insertPage);
+            selfJourneyPage.page = new Page(urlOrContent, insertPage);
         }
 
         // Inserts the html page into the journey.
         function insertPage() {
-            if (selfJourneyPage.Page.html) {
-                selfJourneyPage.id = 'journey-page-' + selfJourneyPage.Page.index;
-                selfJourneyPage.Page.id = selfJourneyPage.id;
+            if (selfJourneyPage.page.html) {
+                selfJourneyPage.id = 'journey-page-' + selfJourneyPage.page.index;
+                selfJourneyPage.page.id = selfJourneyPage.id;
                 journeyPages.push(selfJourneyPage);
                 // Get the template
                 var pageHtml = $($("#journey-page-template").html());
                 // Set the ID of the page
                 // Insert the content in the page.
                 pageHtml.attr('id', selfJourneyPage.id);
-                pageHtml.children('div.journey-page-content').html(selfJourneyPage.Page.html);
+                pageHtml.children('div.journey-page-content').html(selfJourneyPage.page.html);
 
 
                 // Insert the page into the main content area.
@@ -600,7 +631,7 @@ function Journey() {
                 // Make sure this height is set right.
                 journey.setHeights();
                 // Run the page startup scripts.
-                selfJourneyPage.Page.runLoadScript();
+                selfJourneyPage.page.runLoadScript();
 
                 // Calcualte the ideal widths.
                 var width = pageHtml.width();
@@ -631,18 +662,18 @@ function Journey() {
 
         // Refreshes the page.
         selfJourneyPage.refreshPage = function () {
-            selfJourneyPage.Page.runUnloadScript();
-            selfJourneyPage.Page.loadPageFromUrl(selfJourneyPage.setContent);
+            selfJourneyPage.page.runUnloadScript();
+            selfJourneyPage.page.loadPageFromUrl(selfJourneyPage.setContent);
         };
 
         // Sets the DOM to have the value in .html.
         selfJourneyPage.setContent = function () {
             // Callback once the page is loaded.
             var pageHtml = $("#" + selfJourneyPage.id);
-            pageHtml.children('div.journey-page-content').html(selfJourneyPage.Page.html);
+            pageHtml.children('div.journey-page-content').html(selfJourneyPage.page.html);
             journey.setHeights();
             selfJourneyPage.LinkCloseButton();
-            selfJourneyPage.Page.runLoadScript();
+            selfJourneyPage.page.runLoadScript();
         };
 
         selfJourneyPage.LinkCloseButton = function () {
@@ -663,10 +694,10 @@ function Journey() {
                         if (journeyPages[i] == selfJourneyPage) {
                             break;
                         }
-                        pageToScrollTo = journeyPages[i].Page;
+                        pageToScrollTo = journeyPages[i].page;
                     }
                 } else {
-                    pageToScrollTo = selfJourneyPage.Page;
+                    pageToScrollTo = selfJourneyPage.page;
                 }
                 journey.scrollTo($("#" + pageToScrollTo.id));
                 //$('#journey-main-content').scrollTo({ top: 0, left: $("#" + pageToScrollTo.id).position().left }, 400);
@@ -693,7 +724,7 @@ function Journey() {
         function removePages(pagesToRemove, removePagesCallback) {
             if (pagesToRemove && pagesToRemove.length > 0) {
                 var page = pagesToRemove[0];
-                selfJourneyPage.Page.runUnloadScript();
+                selfJourneyPage.page.runUnloadScript();
 
                 $('#' + page.id).animate({
                     opacity: 0

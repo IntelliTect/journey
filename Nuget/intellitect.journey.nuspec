@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>intellitect.journey</id>
+        <version>0.0.1</version>
+        <title>Journey SPA Framework</title>
+        <authors>Grant Erickson</authors>
+        <owners>IntelliTect</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>The goal of this framework is to allow users to create a single page application using regular MVC pages without the need to learn complex heavy-weight SPA frameworks.</description>
+        <summary>Simple SPA framework for creatingAzure style navigation applications.</summary>
+        <copyright>2015 IntelliTect</copyright>
+        <language />
+        <dependencies>
+            <dependency id="jQuery" version="1.9.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\Source\Journey\Content\journey\intellitect.journey.css" target="content\Content\journey\intellitect.journey.css" />
+        <file src="..\Source\Journey\Content\journey\intellitect.journey.theme.css" target="content\Content\journey\intellitect.journey.theme.css" />
+        <file src="..\Source\Journey\IntelliTect\Journey.cs" target="content\Content\IntelliTect\Journey.cs" />
+        <file src="..\Source\Journey\Scripts\intellitect.journey.js" target="content\Content\Scripts\intellitect.journey.js" />
+        <file src="..\Source\Journey\Views\Shared\_Journey.cshtml" target="content\Content\Views\Shared\_Journey.cshtml" />
+        <file src="..\Source\Journey\Views\Shared\_JourneyHome.cshtml" target="content\Content\Views\Shared\_JourneyHome.cshtml" />
+        <file src="..\Source\Journey\Views\Shared\_JourneyPage.cshtml" target="content\Content\Views\Shared\_JourneyPage.cshtml" />
+    </files>
+</package>
