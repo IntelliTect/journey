@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Intellitect.Journey.Jumpstart</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <title>Journey SPA Framework Jumpstart</title>
         <authors>Grant Erickson</authors>
         <owners>IntelliTect</owners>
@@ -16,7 +16,7 @@
         <dependencies>
             <dependency id="jQuery" version="1.9.1" />
             <dependency id="bootstrap" version="3.0.0" />
-            <dependency id="IntelliTect.Journey" version="1.0.0" />
+            <dependency id="IntelliTect.Journey" version="1.0.3" />
         </dependencies>
     </metadata>
     <files>
@@ -31,6 +31,7 @@
         <file src="..\Source\Journey\Views\Journey\Content.cshtml" target="content\Views\Journey\Content.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Docs.cshtml" target="content\Views\Journey\Docs.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Home.cshtml" target="content\Views\Journey\Home.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Editor.cshtml" target="content\Views\Journey\Home.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Index.cshtml" target="content\Views\Journey\Index.cshtml" />
         <file src="..\Source\Journey\Views\Journey\JsRefresh.cshtml" target="content\Views\Journey\JsRefresh.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Logs.cshtml" target="content\Views\Journey\Logs.cshtml" />
