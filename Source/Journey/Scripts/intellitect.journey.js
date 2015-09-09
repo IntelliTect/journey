@@ -25,9 +25,9 @@ function Journey() {
     var popoutSetupFunctions = {};
     var pageIsLoading = false;
     var busyOverlayFailureTimeout = 0;  // Timeout that gets set when busy is displayed to let the user bail out.
-    var busyOverlayFailureTimeoutInSeconds = 15;  // Timeout that gets set when busy is displayed to let the user bail out.
+    journey.busyOverlayFailureTimeoutInSeconds = 15;  // Timeout that gets set when busy is displayed to let the user bail out.
     var busyOverlayFailurePromptTimeout = 0;  // Timeout that gets set when busy is displayed to let the user bail out.
-    var busyOverlayFailurePromptTimeoutInSeconds = 5;  // Timeout that gets set when busy is displayed to let the user bail out.
+    journey.busyOverlayFailurePromptTimeoutInSeconds = 5;  // Timeout that gets set when busy is displayed to let the user bail out.
     var pageLoadCount = 0;
     var connectionBadTimeout = 0;       // Timeout for showing bad connection
     var connectionBadWaitInSeconds = 5; // Seconds to wait before showing the bad connection message
@@ -241,9 +241,15 @@ function Journey() {
                     var jqxhr = $.post(url, $(form).serialize())
                         .done(function (result) {
                             // Determine if we got the same page back
-                            if (result.trim() == "Journey Page Close") {
+                            if (result.indexOf("Journey Page Close") == 0) {
                                 // Blank page back, close it.
-                                page.removePage(true, false, refreshPages);
+                                // See if we want to refresh as well
+                                if (result.indexOf("Refresh") > -1) {
+                                    page.removePage(true, false, refreshPages);
+                                }else{
+                                    page.removePage(true, false);
+                                }
+                            
                             } else if (result.trim() == "Journey Refresh") {
                                 // Reload the entire UI.
                                 location.reload();
@@ -492,7 +498,7 @@ function Journey() {
         journey.scrollTo('#journey-busy-indicator');
         journey.setHeights();
         clearTimeout(busyOverlayFailureTimeout);
-        busyOverlayFailureTimeout = setTimeout(busyFailed, busyOverlayFailureTimeoutInSeconds * 1000);
+        busyOverlayFailureTimeout = setTimeout(busyFailed, journey.busyOverlayFailureTimeoutInSeconds * 1000);
     };
 
     journey.hideBusy = function () {
@@ -511,7 +517,7 @@ function Journey() {
         $('#journey-busy-overlay').fadeIn(100);
         journey.setHeights();
         clearTimeout(busyOverlayFailureTimeout);
-        busyOverlayFailureTimeout = setTimeout(busyFailed, busyOverlayFailureTimeoutInSeconds * 1000);
+        busyOverlayFailureTimeout = setTimeout(busyFailed, journey.busyOverlayFailureTimeoutInSeconds * 1000);
     }
 
     function busyFailed() {
@@ -544,7 +550,7 @@ function Journey() {
             $('#refresh-cancel').hide();
             $('#refresh-on-the-way').show();
             reloadWithWarning();
-        }, busyOverlayFailurePromptTimeoutInSeconds * 1000);
+        }, journey.busyOverlayFailurePromptTimeoutInSeconds * 1000);
     }
 
     function reloadWithWarning() {

@@ -8,6 +8,8 @@ namespace Journey.Controllers
 {
     public class JourneyController : Controller
     {
+        public static string _name = "Bond, James Bond";
+
         // GET: Journey
         public ActionResult Index()
         {
@@ -47,5 +49,42 @@ namespace Journey.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Editor()
+        {
+            var data = new EditorModel()
+            {
+                Name = _name
+            };
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editor(EditorModel data)
+        {
+            if (string.IsNullOrWhiteSpace(data.Name))
+            {
+                // Push back an error
+                ModelState.AddModelError("Name", "Name must be specified");
+                return View(data);
+            }
+            else
+            {
+                _name = data.Name;
+
+                // Close the page
+                return IntelliTect.Journey.Close(data.Refresh);
+            }
+        }
     }
+
+
+    public class EditorModel
+    {
+        public string Name { get; set; }
+        public bool Refresh { get; set; }
+    }
+
 }

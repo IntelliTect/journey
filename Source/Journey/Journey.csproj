@@ -262,6 +262,7 @@
     <Content Include="Views\Journey\Logs.cshtml" />
     <Content Include="Views\Journey\Content.cshtml" />
     <Content Include="Views\Journey\JsRefresh.cshtml" />
+    <Content Include="Views\Journey\Editor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

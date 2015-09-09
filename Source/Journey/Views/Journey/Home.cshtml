@@ -14,7 +14,18 @@
 
 <div data-journey-script="home" id="home" style="width:400px;">
 
-    @Html.ActionLink("View some content with alerts for when items load...", "Content", null, new { @class = "btn btn-default" })
+    <div>
+        @Html.ActionLink("View some content with alerts for when items load...", "Content", null, new { @class = "btn btn-default" })
+    </div>
+
+    <div>
+        @Html.ActionLink("Editor with Submit", "Editor", null, new { @class = "btn btn-warning" })
+    </div>
+
+    <a class="btn btn-default" href="/journey/logs|/journey/logs">Open two logs.</a>
+
+
+
 
 
 

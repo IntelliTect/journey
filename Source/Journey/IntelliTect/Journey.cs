@@ -9,11 +9,11 @@ namespace IntelliTect
 {
     public class Journey
     {
-        public static ActionResult Close()
+        public static ActionResult Close(bool refresh = true)
         {
             return new ContentResult()
             {
-                Content = "Journey Page Close"
+                Content = "Journey Page Close" + (refresh ? ": Refresh": "")
             };
         }
         public static ActionResult RefreshPage()
