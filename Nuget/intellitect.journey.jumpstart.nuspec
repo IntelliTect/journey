@@ -31,7 +31,7 @@
         <file src="..\Source\Journey\Views\Journey\Content.cshtml" target="content\Views\Journey\Content.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Docs.cshtml" target="content\Views\Journey\Docs.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Home.cshtml" target="content\Views\Journey\Home.cshtml" />
-        <file src="..\Source\Journey\Views\Journey\Editor.cshtml" target="content\Views\Journey\Home.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\Editor.cshtml" target="content\Views\Journey\Editor.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Index.cshtml" target="content\Views\Journey\Index.cshtml" />
         <file src="..\Source\Journey\Views\Journey\JsRefresh.cshtml" target="content\Views\Journey\JsRefresh.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Logs.cshtml" target="content\Views\Journey\Logs.cshtml" />
