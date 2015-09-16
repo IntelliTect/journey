@@ -32,8 +32,7 @@ function Journey() {
     var connectionBadTimeout = 0;       // Timeout for showing bad connection
     var connectionBadWaitInSeconds = 5; // Seconds to wait before showing the bad connection message
     journey.isConnected = true;
-    journey.pageLoadCallback = null  // Set this to a function to have code run every time a page is loaded.
-
+    journey.pageLoadCallback = null;  // Set this to a function to have code run every time a page is loaded.
 
     // Startup journey page that initializes the main page.
     $(function () {
@@ -198,15 +197,23 @@ function Journey() {
         }
     };
 
-
+    journey.bindClickHandler = function () {
+        $(document).off("click", documentClickHandler);
+        $(document).on("click", documentClickHandler);
+    }
 
     // Delegate the click event for anchors so we can redirect it.
-    document.onclick = function (e) {
+    function documentClickHandler(e) {
         // If a page is already loading, don't respond.
         if (pageIsLoading) {
             return false;
         }
         e = e || window.event;
+        // See if the default has been prevented, if so, quit
+        if (e.isDefaultPrevented()) {
+            return false;
+        }
+
         // Get the element where the click was done.
         var element = e.target || e.srcElement;
 
@@ -246,10 +253,10 @@ function Journey() {
                                 // See if we want to refresh as well
                                 if (result.indexOf("Refresh") > -1) {
                                     page.removePage(true, false, refreshPages);
-                                }else{
+                                } else {
                                     page.removePage(true, false);
                                 }
-                            
+
                             } else if (result.trim() == "Journey Refresh") {
                                 // Reload the entire UI.
                                 location.reload();
@@ -478,6 +485,7 @@ function Journey() {
         }, 100, function () {
             popoutOpen = true;
             // Animation Complete
+            journey.bindClickHandler();
         });
     }
 
@@ -771,12 +779,17 @@ function Journey() {
             $.ajax(selfPage.url, {
                 dataType: 'html'
             }).done(function (html) {
-                // Load the page into the journey
-                selfPage.html = html;
-                var thisPageContent = $(selfPage.html).filter("[data-journey-script]");
+                // Make sure this is not JSON for some reason
+                if (html.indexOf("{") == 0) {
+                    // This is JSON for some strange reason, throw it out
+                } else {
+                    // Load the page into the journey
+                    selfPage.html = html;
+                    var thisPageContent = $(selfPage.html).filter("[data-journey-script]");
 
-                if (thisPageContent.length > 0) {
-                    selfPage.journeyScriptName = thisPageContent.attr("data-journey-script");
+                    if (thisPageContent.length > 0) {
+                        selfPage.journeyScriptName = thisPageContent.attr("data-journey-script");
+                    }
                 }
             }).fail(function () {
                 alert("Could not load the page");
@@ -791,6 +804,8 @@ function Journey() {
                     ".disable-form .form-control:not(.allow-disabled-click), " +
                     ".disable-form button:not(.allow-disabled-click), " +
                     ".disable-form .select2-container:not(.allow-disabled-click)").attr('disabled', 'disabled');
+                journey.bindClickHandler();
+
             });
         };
 
