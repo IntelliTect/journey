@@ -78,6 +78,35 @@ namespace Journey.Controllers
                 return IntelliTect.Journey.Close(data.Refresh);
             }
         }
+
+        [HttpGet]
+        public ActionResult HomeWithPost()
+        {
+            var data = new HomeModel()
+            {
+                Name = _name
+            };
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HomeWithPost(HomeModel data)
+        {
+            if (string.IsNullOrWhiteSpace(data.Name))
+            {
+                // Push back an error
+                ModelState.AddModelError("Name", "Name must be specified");
+                return View(data);
+            }
+            else
+            {
+                _name = data.Name;
+
+                // Refresh the home page
+                return IntelliTect.Journey.RefreshPage();
+            }
+        }
     }
 
 
@@ -85,6 +114,11 @@ namespace Journey.Controllers
     {
         public string Name { get; set; }
         public bool Refresh { get; set; }
+    }
+
+    public class HomeModel
+    {
+        public string Name { get; set; }
     }
 
 }

@@ -246,31 +246,48 @@ function Journey() {
                             if (result.indexOf("Journey Page Close") === 0) {
                                 // Blank page back, close it.
                                 // See if we want to refresh as well
-                                if (result.indexOf("Refresh") > -1) {
-                                    page.removePage(true, false, refreshPages);
+                                if (page) {
+                                    if (result.indexOf("Refresh") > -1) {
+                                        page.removePage(true, false, refreshPages);
+                                    } else {
+                                        page.removePage(true, false);
+                                    }
                                 } else {
-                                    page.removePage(true, false);
+                                    // This is the home page. Just refresh.
+                                    refreshPages();
                                 }
 
                             } else if (result.trim() == "Journey Refresh") {
                                 // Reload the entire UI.
                                 location.reload();
-                            } else if (result.trim() == "Journey Page Refresh") {
+                            } else if (result.trim() == "Journey Refresh Page") {
                                 // Blank page back, close it.
                                 refreshPages();
                             } else if (result.replace(/&amp;/g, "&").indexOf('action="' + url + '"') > -1) {
                                 // Replace the encoded ampersands above in the content coming back.
                                 // Replace the content of the page.
-                                page.page.runUnloadScript();
-                                page.page.html = result;
-                                page.setContent();
+                                if (page) {
+                                    page.page.runUnloadScript();
+                                    page.page.html = result;
+                                    page.setContent();
+                                } else {
+                                    // This is the home page
+                                    homePage.runUnloadScript();
+                                    loadHomePageContent(result);
+                                }
                             } else {
                                 // Post the content as a page.'
                                 // Pull the URL from the page because Journey pages have these embedded.
-                                var pageUrl = getJourneyPageUrl(result);
-                                page.removePage(true, true);
-                                journey.openJourneyPage(pageUrl);
-                                refreshPages();
+                                if (page) {  // If this doesn't exist, it is a home page.
+                                    var pageUrl = getJourneyPageUrl(result);
+                                    page.removePage(true, true);
+                                    journey.openJourneyPage(pageUrl);
+                                    refreshPages();
+                                } else {
+                                    // This is the home page
+                                    homePage.runUnloadScript();
+                                    loadHomePageContent(result);
+                                }
                             }
                             journey.setHeights();
                             clearTimeout(busyTimeout);
@@ -424,6 +441,7 @@ function Journey() {
         $("#journey-side-bar li.journey-default").click();
     }
 
+    // Reload the home page from a URL.
     function loadHomePage(url) {
         if (homePage) {
             homePage.runUnloadScript();
@@ -435,11 +453,9 @@ function Journey() {
             $('#journey-home-area').animate({
                 opacity: 0.5
             }, 300, function () {
-                // Load the page into the home container
-                $('#journey-home-area').html(homePage.html);
-                homePage.id = "journey-home-area";
+                // Put the HTML on the page and run the load script.
+                loadHomePageContent(homePage.html);
 
-                homePage.runLoadScript();
                 // Fade it back in.
                 $('#journey-home-area').animate({
                     opacity: 1
@@ -449,6 +465,15 @@ function Journey() {
                 }
             });
         });
+    }
+
+    // Set the content on the home page and run the load script.
+    function loadHomePageContent(content) {
+        // Load the page into the home container
+        $('#journey-home-area').html(content);
+        homePage.id = "journey-home-area";
+        // Run the load script.
+        homePage.runLoadScript();
     }
 
 
