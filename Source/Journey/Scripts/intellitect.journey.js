@@ -246,10 +246,10 @@ function Journey() {
                                 // See if we want to refresh as well
                                 if (result.indexOf("Refresh") > -1) {
                                     page.removePage(true, false, refreshPages);
-                                }else{
+                                } else {
                                     page.removePage(true, false);
                                 }
-                            
+
                             } else if (result.trim() == "Journey Refresh") {
                                 // Reload the entire UI.
                                 location.reload();
@@ -641,6 +641,7 @@ function Journey() {
 
                 // Calcualte the ideal widths.
                 var width = pageHtml.width();
+                if (width == 304) width = 600;
                 // Set the width to 0 so we can expand it.
                 pageHtml.width(0);
 
@@ -769,8 +770,12 @@ function Journey() {
         selfPage.loadPageFromUrl = function (loadPageCallback) {
             var timeout = setTimeout(journey.showBusy, 200);
             $.ajax(selfPage.url, {
-                dataType: 'html'
-            }).done(function (html) {
+                dataType: 'html',
+                xhrFields: {
+                    withCredentials: true
+                }
+            })
+            .done(function (html) {
                 // Load the page into the journey
                 selfPage.html = html;
                 var thisPageContent = $(selfPage.html).filter("[data-journey-script]");
@@ -778,9 +783,12 @@ function Journey() {
                 if (thisPageContent.length > 0) {
                     selfPage.journeyScriptName = thisPageContent.attr("data-journey-script");
                 }
-            }).fail(function () {
-                alert("Could not load the page");
-            }).always(function () {
+            })
+            .fail(function (ex) {
+                selfPage.html = '<iframe src="' + selfPage.url + '" style="width: 100%; height: 100%;"></iframe>';
+                //alert("Could not load the page");
+            })
+            .always(function () {
                 // Clear the busy and timeout
                 clearTimeout(timeout);
                 journey.hideBusy();

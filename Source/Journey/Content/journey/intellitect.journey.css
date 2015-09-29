@@ -236,6 +236,11 @@ div.journey-data-content {
             font-weight: bold;
         }
 
+    #journey-main-content div.journey-page div.journey-page-content {
+        height: 100%;
+        width: 100%;
+    }
+
     #journey-main-content div.journey-page div.journey-page-content div.journey-page-header {
         height: 100px;
         padding-left: 10px;
