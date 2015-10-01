@@ -3,7 +3,6 @@ $(function () {
     $.ajaxSetup({ cache: false });
 });
 
-
 var journey = new Journey();
 
 // Primary journey class.
@@ -188,7 +187,7 @@ function Journey() {
             var page = new JourneyPage(url, callback);
         }
     };
-    
+
     // This allows us to rebind to the click handler on each page. 
     // It is important that we be the last handler so if anything prevents a regular
     // navigation that we honor that.
@@ -723,7 +722,7 @@ function Journey() {
             // Remove any pages to the right.
             // Create a list of pages to remove.
             var pagesToRemove = [];
-            for (iPage = journeyPages.length-1; iPage >= 0; iPage--) {
+            for (iPage = journeyPages.length - 1; iPage >= 0; iPage--) {
                 var page = journeyPages[iPage];
                 if (page == selfJourneyPage) {
                     if (removeSelf) {
@@ -871,3 +870,18 @@ function Journey() {
     };
 })(jQuery);
 
+
+// Add a shim for the scrollTo jQuery plugin just in case it fails to load.
+if (!$(window).scrollTo) {
+    (function ($) {
+        $.fn.scrollTo = function (target, duration, settings) {
+            this.animate({
+                scrollLeft: target.left
+            }, 350);
+            this.animate({
+                scrollTop: target.top
+            }, 350);
+            return this;
+        };
+    }(jQuery));
+}
