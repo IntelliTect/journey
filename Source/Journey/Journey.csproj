@@ -191,6 +191,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\admin.png" />
+    <Content Include="Content\img\form.png" />
     <Content Include="Content\img\test.png" />
     <Content Include="Content\img\doc.png" />
     <Content Include="Content\img\home.png" />
@@ -292,7 +293,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>20692</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
