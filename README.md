@@ -13,6 +13,7 @@ Journey is available on NuGet as the [Journey SPA Framework](https://www.nuget.o
 Please check out the wiki for complete documentation: [Wiki Docs](https://github.com/IntelliTect/journey/wiki/Home)
 
 You can see a sample site here: [Journey Demo](http://journeydemo.azurewebsites.net/Journey)
+
 ![Journey Screenshot](JourneyScreenShot.jpg "Journey Screenshot")
 
 ###Note
