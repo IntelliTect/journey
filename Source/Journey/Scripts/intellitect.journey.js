@@ -148,7 +148,7 @@ function Journey() {
     // Opens a journey page based on a URL. 
     // Element refers to the element used to open the page. This will allow the framework
     // to close pages beyond the page that was used to open this page.
-    journey.openJourneyPage = function (url, element, callback) {
+    journey.openJourneyPage = function (url, element, callback, iframeWidth) {
         // Check for multiple URLs
         // See if we have more than one page to open
         var urls = url.split("%7C");
@@ -174,17 +174,17 @@ function Journey() {
                 var page = journeyPageById(parents[0].id);
                 //$("#journey-main-content").width($("#journey-main-content").width());
                 page.removePage(false, true, function () {
-                    var page = new JourneyPage(url, callback);
+                    var page = new JourneyPage(url, callback, iframeWidth);
                 });
             } else {
                 // If this is on the menu or home page, close all pages.
                 removeAllJourneyPages(true, function () {
-                    var page = new JourneyPage(url, callback);
+                    var page = new JourneyPage(url, callback, iframeWidth);
                 });
             }
         } else {
             // Just open the page.
-            var page = new JourneyPage(url, callback);
+            var page = new JourneyPage(url, callback, iframeWidth);
         }
     };
 
@@ -198,6 +198,7 @@ function Journey() {
 
     // Delegate the click event for anchors so we can redirect it.
     function documentClickHandler(e) {
+        var iframeWidth;
         // If a page is already loading, don't respond.
         if (pageIsLoading) {
             return false;
@@ -216,7 +217,8 @@ function Journey() {
             if (element.target.toLowerCase() == "_blank") {
                 window.open(element.href, '_blank');
             } else if (element.href.indexOf('#') == -1) {
-                journey.openJourneyPage(element.href, element);
+                iframeWidth = element.getAttribute("iframe-width");
+                journey.openJourneyPage(element.href, element, null, iframeWidth);
             }
             return false; // prevent default action and stop event propagation
         } else if ($(element).parents("a").length > 0) {
@@ -224,7 +226,8 @@ function Journey() {
             // Only open the page if this really is a link.
             if ($(element).parents("a")[0].href.indexOf('#') == -1) {
                 var href = $(element).parents("a")[0].href;
-                journey.openJourneyPage(href, element);
+                iframeWidth = element.getAttribute("iframe-width");
+                journey.openJourneyPage(href, element, null, iframeWidth);
             }
             return false; // prevent default action and stop event propagation
 
@@ -614,7 +617,7 @@ function Journey() {
 
 
 
-    function JourneyPage(urlOrContent, callback) {
+    function JourneyPage(urlOrContent, callback, iframeWidth) {
         var selfJourneyPage = this;
         selfJourneyPage.url = "Unknown";
 
@@ -623,7 +626,7 @@ function Journey() {
             selfJourneyPage.page = new Page(urlOrContent, insertPage);
         } else {
             selfJourneyPage.url = urlOrContent;
-            selfJourneyPage.page = new Page(urlOrContent, insertPage);
+            selfJourneyPage.page = new Page(urlOrContent, insertPage, iframeWidth);
         }
 
         // Inserts the html page into the journey.
@@ -650,6 +653,7 @@ function Journey() {
 
                 // Calcualte the ideal widths.
                 var width = pageHtml.width();
+                if (width == 304) width = 600;
                 // Set the width to 0 so we can expand it.
                 pageHtml.width(0);
 
@@ -763,7 +767,7 @@ function Journey() {
     }
 
 
-    function Page(urlOrContent, callback) {
+    function Page(urlOrContent, callback, iframeWidth) {
         var selfPage = this;
         selfPage.url = "Unknown";
         selfPage.html = "";
@@ -772,44 +776,62 @@ function Journey() {
         selfPage.issues = [];
         selfPage.journeyScriptName = null;
         selfPage.id = ""; // This will be set later.
-        selfPage.element =
-
+        selfPage.desiredIframeWidth = iframeWidth;
 
         // Loads the page from the server and adds it to the journey
         selfPage.loadPageFromUrl = function (loadPageCallback) {
             var timeout = setTimeout(journey.showBusy, 200);
-            $.ajax(selfPage.url, {
-                dataType: 'html'
-            }).done(function (html) {
-                // Make sure this is not JSON for some reason
-                if (html.indexOf("{") === 0) {
-                    // This is JSON for some strange reason, throw it out
-                } else {
-                    // Load the page into the journey
-                    selfPage.html = html;
-                    var thisPageContent = $(selfPage.html).filter("[data-journey-script]");
-
-                    if (thisPageContent.length > 0) {
-                        selfPage.journeyScriptName = thisPageContent.attr("data-journey-script");
+            var actualIframeWidth = selfPage.desiredIframeWidth || "600px";
+            if (selfPage.desiredIframeWidth) {
+                // This must return before the page can be loaded. 
+                setTimeout(function() {
+                    // Set up the iframe.
+                    selfPage.html = '<iframe src="' + selfPage.url + '" style="width: ' + actualIframeWidth + '; height: 100%;" frameborder="0"></iframe>';
+                    clearTimeout(timeout);
+                    journey.hideBusy();
+                    loadPageCallback();
+                    journey.bindClickHandler();
+                }, 10);
+            } else {
+                $.ajax(selfPage.url, {
+                    dataType: 'html',
+                    xhrFields: {
+                        withCredentials: true
                     }
-                }
-            }).fail(function () {
-                alert("Could not load the page");
-            }).always(function () {
-                // Clear the busy and timeout
-                clearTimeout(timeout);
-                journey.hideBusy();
-                loadPageCallback();
-                // Disable page elements as necessary
-                $('.disable-form input:not(.allow-disabled-click):not([type="hidden"]), ' +
-                    ".disable-form textarea:not(.allow-disabled-click), " +
-                    ".disable-form .form-control:not(.allow-disabled-click), " +
-                    ".disable-form button:not(.allow-disabled-click), " +
-                    ".disable-form .select2-container:not(.allow-disabled-click)").attr('disabled', 'disabled');
-                journey.bindClickHandler();
+                }).done(function (html) {
+                    // Make sure this is not JSON for some reason
+                    if (html.indexOf("{") === 0) {
+                        // This is JSON for some strange reason, throw it out
+                    } else {
+                        // Load the page into the journey
+                        selfPage.html = html;
+                        var thisPageContent = $(selfPage.html).filter("[data-journey-script]");
 
-            });
+                        if (thisPageContent.length > 0) {
+                            selfPage.journeyScriptName = thisPageContent.attr("data-journey-script");
+                        }
+                    }
+                }).fail(function (ex) {
+                    // Try to load an IFrame
+                    selfPage.html = '<iframe src="' + selfPage.url + '" style="width: ' + actualIframeWidth + '; height: 100%;" frameborder="0"></iframe>';
+                    //alert("Could not load the page");
+                }).always(function () {
+                    // Clear the busy and timeout
+                    clearTimeout(timeout);
+                    journey.hideBusy();
+                    loadPageCallback();
+                    // Disable page elements as necessary
+                    $('.disable-form input:not(.allow-disabled-click):not([type="hidden"]), ' +
+                        ".disable-form textarea:not(.allow-disabled-click), " +
+                        ".disable-form .form-control:not(.allow-disabled-click), " +
+                        ".disable-form button:not(.allow-disabled-click), " +
+                        ".disable-form .select2-container:not(.allow-disabled-click)").attr('disabled', 'disabled');
+                    journey.bindClickHandler();
+
+                });
+            }
         };
+
 
         selfPage.runLoadScript = function () {
             if (selfPage.journeyScriptName) {
