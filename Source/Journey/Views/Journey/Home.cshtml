@@ -14,19 +14,21 @@
 
 <div data-journey-script="home" id="home" style="width:400px;">
 
-    <div>
+    <div class="row" style="margin-bottom: 20px;">
         @Html.ActionLink("View some content with alerts for when items load...", "Content", null, new { @class = "btn btn-default" })
     </div>
 
-    <div>
-        @Html.ActionLink("Editor with Submit", "Editor", null, new { @class = "btn btn-warning" })
+    <div class="row" style="margin-bottom: 20px;">
+        @Html.ActionLink("Editor with Submit", "Editor", null, new {@class = "btn btn-warning"})
     </div>
 
-    <a class="btn btn-default" href="/journey/logs|/journey/logs">Open two logs.</a>
+    <div class="row" style="margin-bottom: 20px;">
+        <a class="btn btn-info" href="http://www.w3schools.com/">w3schools.com IFrame</a>
+        <a class="btn btn-info" iframe-width="900px"href="http://www.w3schools.com/">w3schools.com IFrame with Width</a>
+    </div>
 
-
-
-
-
+    <div class="row" style="margin-bottom: 20px;">
+        <a class="btn btn-default" href="/journey/logs|/journey/logs">Open two logs.</a>
+    </div>
 
 </div>

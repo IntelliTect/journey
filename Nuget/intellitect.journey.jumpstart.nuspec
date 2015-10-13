@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Intellitect.Journey.Jumpstart</id>
-        <version>1.0.4</version>
+        <version>1.0.9</version>
         <title>Journey SPA Framework Jumpstart</title>
         <authors>Grant Erickson</authors>
         <owners>IntelliTect</owners>
@@ -16,13 +16,14 @@
         <dependencies>
             <dependency id="jQuery" version="1.9.1" />
             <dependency id="bootstrap" version="3.0.0" />
-            <dependency id="IntelliTect.Journey" version="1.0.3" />
+            <dependency id="IntelliTect.Journey" version="1.0.9" />
         </dependencies>
     </metadata>
     <files>
         <file src="..\Source\Journey\Content\img\admin.png" target="content\Content\img\admin.png" />
         <file src="..\Source\Journey\Content\img\doc.png" target="content\Content\img\doc.png" />
         <file src="..\Source\Journey\Content\img\home.png" target="content\Content\img\home.png" />
+        <file src="..\Source\Journey\Content\img\form.png" target="content\Content\img\form.png" />
         <file src="..\Source\Journey\Content\img\notification.png" target="content\Content\img\notification.png" />
         <file src="..\Source\Journey\Content\img\test.png" target="content\Content\img\test.png" />
         <file src="..\Source\Journey\Content\img\user.png" target="content\Content\img\user.png" />
@@ -31,6 +32,7 @@
         <file src="..\Source\Journey\Views\Journey\Content.cshtml" target="content\Views\Journey\Content.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Docs.cshtml" target="content\Views\Journey\Docs.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Home.cshtml" target="content\Views\Journey\Home.cshtml" />
+        <file src="..\Source\Journey\Views\Journey\HomeWithPost.cshtml" target="content\Views\Journey\HomeWithPost.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Editor.cshtml" target="content\Views\Journey\Editor.cshtml" />
         <file src="..\Source\Journey\Views\Journey\Index.cshtml" target="content\Views\Journey\Index.cshtml" />
         <file src="..\Source\Journey\Views\Journey\JsRefresh.cshtml" target="content\Views\Journey\JsRefresh.cshtml" />

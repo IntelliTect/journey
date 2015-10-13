@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey", "Source\Journey\Journey.csproj", "{B0167031-8D9E-4A49-B0ED-65F360F1B457}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0419E008-EB0B-4586-9697-FFAD5A0BEC4C}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\intellitect.journey.jumpstart.nuspec = Nuget\intellitect.journey.jumpstart.nuspec
+		Nuget\intellitect.journey.nuspec = Nuget\intellitect.journey.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
