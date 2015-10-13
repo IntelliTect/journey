@@ -1,4 +1,5 @@
-﻿/* Intellitect Journey framework theme css */
+﻿/* Intellitect Journey framework theme css with a menu width of 50px */
+/* Intellitect Journey framework theme css */
 /* Copy and modify this file to change the color scheme, fonts, etc.*/
 body {
   font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
@@ -100,28 +101,28 @@ div.journey-avatar-timezone {
   background-color: #666;
 }
 #journey-side-bar {
-  width: 100px;
+  width: 50px;
 }
 #journey-side-bar ul {
-  width: 116px;
+  width: 66px;
   padding-top: 10px;
 }
 #journey-side-bar ul li {
-  height: 100px;
+  height: 60px;
 }
 #journey-side-bar ul li img {
-  width: 50px;
-  height: 50px;
-  margin-left: 25px;
-  margin-top: 14.28571429px;
+  width: 25px;
+  height: 25px;
+  margin-left: 12.5px;
+  margin-top: 7.14285714px;
 }
 #journey-side-bar ul li div.journey-title {
-  width: 100px;
-  font-size: 1em;
+  width: 50px;
+  font-size: 0.8em;
 }
 #journey-popout {
-  left: 101px;
+  left: 51px;
 }
 #journey-main-content {
-  left: 100px;
+  left: 50px;
 }
