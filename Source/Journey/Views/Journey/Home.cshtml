@@ -19,16 +19,28 @@
     </div>
 
     <div class="row" style="margin-bottom: 20px;">
-        @Html.ActionLink("Editor with Submit", "Editor", null, new {@class = "btn btn-warning"})
+        @Html.ActionLink("Editor with Submit", "Editor", null, new { @class = "btn btn-warning" })
     </div>
 
     <div class="row" style="margin-bottom: 20px;">
         <a class="btn btn-info" href="http://www.w3schools.com/">w3schools.com IFrame</a>
-        <a class="btn btn-info" iframe-width="900px"href="http://www.w3schools.com/">w3schools.com IFrame with Width</a>
+        <a class="btn btn-info" iframe-width="900px" href="http://www.w3schools.com/">w3schools.com IFrame with Width</a>
     </div>
 
     <div class="row" style="margin-bottom: 20px;">
-        <a class="btn btn-default" href="/journey/logs|/journey/logs">Open two logs.</a>
+        <a class="btn btn-default" href="/journey/logs?index=1|/journey/logs?index=2">Open two logs.</a>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Menu width options
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <btn class="btn btn-default" onclick="document.location.href='/journey'">100 px wide</btn>
+                <btn class="btn btn-default" onclick="document.location.href='/journey/index?width=50'">50 px wide</btn>
+            </div>
+        </div>
     </div>
 
 </div>

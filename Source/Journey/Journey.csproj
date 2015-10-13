@@ -275,7 +275,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\_Journey.cshtml" />
-    <Content Include="Views\Journey\Index.cshtml" />
     <Content Include="Views\Journey\TestPopover.cshtml" />
     <Content Include="Views\Journey\NotificationsPopover.cshtml" />
     <Content Include="Views\Journey\Admin.cshtml" />
@@ -289,6 +288,7 @@
     <Content Include="Views\Journey\JsRefresh.cshtml" />
     <Content Include="Views\Journey\Editor.cshtml" />
     <Content Include="Views\Journey\HomeWithPost.cshtml" />
+    <Content Include="Views\Journey\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

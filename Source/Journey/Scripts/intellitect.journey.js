@@ -145,19 +145,27 @@ function Journey() {
         return false;
     };
 
+    function splitUrl(url) {
+        var result = url.split("%7C");
+        if (result.length == 1) {
+            result = url.split("|");
+        }
+        return result;
+    }
+
     // Opens a journey page based on a URL. 
     // Element refers to the element used to open the page. This will allow the framework
     // to close pages beyond the page that was used to open this page.
     journey.openJourneyPage = function (url, element, callback, iframeWidth) {
         // Check for multiple URLs
         // See if we have more than one page to open
-        var urls = url.split("%7C");
+        var urls = splitUrl(url);
         url = urls[0];
         // Remove the first item
         urls.splice(0, 1);
         // If we still have items, create a callback to open them the next time.
         if (urls.length > 0) {
-            var remainingUrls = urls.join("%7C");
+            var remainingUrls = urls.join("|");
             // Assign into a temporary variable so we can close on the original callback.
             callback = (function (finalCallback) {
                 return function () {
@@ -224,7 +232,9 @@ function Journey() {
         } else if ($(element).parents("a").length > 0) {
             // See if there is an a this is inside.
             // Only open the page if this really is a link.
-            if ($(element).parents("a")[0].href.indexOf('#') == -1) {
+            if ($(element).parents("a")[0].target.toLowerCase() == "_blank") {
+                window.open(element.href, '_blank');
+            } else if ($(element).parents("a")[0].href.indexOf('#') == -1) {
                 var href = $(element).parents("a")[0].href;
                 iframeWidth = element.getAttribute("iframe-width");
                 journey.openJourneyPage(href, element, null, iframeWidth);
@@ -736,7 +746,7 @@ function Journey() {
                 }
                 pagesToRemove.push(page);
             }
-            journeyPages.reverse();
+            pagesToRemove.reverse();
             removePages(pagesToRemove, removeCallback);
         };
 

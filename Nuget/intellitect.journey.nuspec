@@ -1,30 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>Intellitect.Journey</id>
-        <version>1.0.9</version>
-        <title>Journey SPA Framework</title>
-        <authors>Grant Erickson</authors>
-        <owners>IntelliTect</owners>
-        <licenseUrl>https://raw.githubusercontent.com/IntelliTect/journey/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/IntelliTect/journey/</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>This lightweight framework allows users to create single page applications using regular MVC pages without the need to learn complex SPA frameworks.</description>
-        <summary>Simple SPA framework for creating Azure-style navigation applications.</summary>
-        <releaseNotes>For help getting started use the Intellitect.Journey.Jumpstart NuGet package.</releaseNotes>
-        <copyright>2015 IntelliTect</copyright>
-        <language />
-        <dependencies>
-            <dependency id="jQuery" version="1.9.1" />
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="..\Source\Journey\Content\journey\intellitect.journey.css" target="content\Content\journey\intellitect.journey.css" />
-        <file src="..\Source\Journey\Content\journey\intellitect.journey.theme.css" target="content\Content\journey\intellitect.journey.theme.css" />
-        <file src="..\Source\Journey\IntelliTect\Journey.cs" target="content\IntelliTect\Journey.cs" />
-        <file src="..\Source\Journey\Views\Shared\_Journey.cshtml" target="content\Views\Shared\_Journey.cshtml" />
-        <file src="..\Source\Journey\Views\Shared\_JourneyHome.cshtml" target="content\Views\Shared\_JourneyHome.cshtml" />
-        <file src="..\Source\Journey\Views\Shared\_JourneyPage.cshtml" target="content\Views\Shared\_JourneyPage.cshtml" />
-        <file src="..\Source\Journey\Scripts\intellitect.journey.js" target="content\Scripts\intellitect.journey.js" />
-    </files>
+  <metadata>
+    <id>Intellitect.Journey</id>
+    <version>1.0.9</version>
+    <title>Journey SPA Framework</title>
+    <authors>Grant Erickson</authors>
+    <owners>IntelliTect</owners>
+    <licenseUrl>https://raw.githubusercontent.com/IntelliTect/journey/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/IntelliTect/journey/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This lightweight framework allows users to create single page applications using regular MVC pages without the need to learn complex SPA frameworks.</description>
+    <summary>Simple SPA framework for creating Azure-style navigation applications.</summary>
+    <releaseNotes>For help getting started use the Intellitect.Journey.Jumpstart NuGet package.</releaseNotes>
+    <copyright>2015 IntelliTect</copyright>
+    <language />
+    <dependencies>
+      <dependency id="jQuery" version="1.9.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Source\Journey\Content\journey\intellitect.journey.css" target="content\Content\journey\intellitect.journey.css" />
+    <file src="..\Source\Journey\Content\journey\intellitect.journey.theme.css" target="content\Content\journey\intellitect.journey.theme.css" />
+    <file src="..\Source\Journey\Content\journey\intellitect.journey.theme.50.css" target="content\Content\journey\intellitect.journey.theme.css" />
+    <file src="..\Source\Journey\IntelliTect\Journey.cs" target="content\IntelliTect\Journey.cs" />
+    <file src="..\Source\Journey\Views\Shared\_Journey.cshtml" target="content\Views\Shared\_Journey.cshtml" />
+    <file src="..\Source\Journey\Views\Shared\_JourneyHome.cshtml" target="content\Views\Shared\_JourneyHome.cshtml" />
+    <file src="..\Source\Journey\Views\Shared\_JourneyPage.cshtml" target="content\Views\Shared\_JourneyPage.cshtml" />
+    <file src="..\Source\Journey\Scripts\intellitect.journey.js" target="content\Scripts\intellitect.journey.js" />
+  </files>
 </package>

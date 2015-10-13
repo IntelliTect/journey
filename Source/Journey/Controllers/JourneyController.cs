@@ -11,9 +11,11 @@ namespace Journey.Controllers
         public static string _name = "Bond, James Bond";
 
         // GET: Journey
-        public ActionResult Index()
+        public ActionResult Index(string width = "")
         {
             ViewBag.Title = "Journey";
+            if (string.IsNullOrEmpty(width)) ViewBag.Width = width;
+            else ViewBag.Width = "." + width;
             return View();
         }
 
@@ -37,8 +39,9 @@ namespace Journey.Controllers
             return View();
         }
 
-        public ActionResult Logs()
+        public ActionResult Logs(string index = "")
         {
+            ViewBag.Index = index;
             return View();
         }
         public ActionResult Content()
