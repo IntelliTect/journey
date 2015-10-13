@@ -48,6 +48,17 @@ namespace Journey.Controllers
         {
             return View();
         }
+
+        public ActionResult ShowEditorValues(bool openPageAfterSubmit = false)
+        {
+            var data = new EditorModel()
+            {
+                Name = _name
+            };
+            ViewBag.OpenPageAfterSubmit = openPageAfterSubmit;
+
+            return View(data);
+        }
         public ActionResult JsRefresh()
         {
             return View();
@@ -65,7 +76,7 @@ namespace Journey.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editor(EditorModel data)
+        public ActionResult Editor(EditorModel data, bool NewPage = false)
         {
             if (string.IsNullOrWhiteSpace(data.Name))
             {
@@ -77,8 +88,15 @@ namespace Journey.Controllers
             {
                 _name = data.Name;
 
-                // Close the page
-                return IntelliTect.Journey.Close(data.Refresh);
+                if (NewPage)
+                {
+                    return RedirectToAction("ShowEditorValues");
+                }
+                else
+                {
+                    // Close the page
+                    return IntelliTect.Journey.Close(data.Refresh);
+                }
             }
         }
 
@@ -94,7 +112,7 @@ namespace Journey.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HomeWithPost(HomeModel data)
+        public ActionResult HomeWithPost(HomeModel data, bool NewPage = false)
         {
             if (string.IsNullOrWhiteSpace(data.Name))
             {
@@ -106,10 +124,36 @@ namespace Journey.Controllers
             {
                 _name = data.Name;
 
-                // Refresh the home page
-                return IntelliTect.Journey.RefreshPage();
+                if (NewPage)
+                {
+                    return RedirectToAction("ShowEditorValues");
+                }
+                else
+                {
+                    // Refresh the home page
+                    return IntelliTect.Journey.RefreshPage();
+                }
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HomeWithPostNewPage(HomeModel data)
+        {
+            if (string.IsNullOrWhiteSpace(data.Name))
+            {
+                // Push back an error
+                ModelState.AddModelError("Name", "Name must be specified");
+                return View(data);
+            }
+            else
+            {
+                _name = data.Name;
+
+                return RedirectToAction("ShowEditorValues");
+            }
+        }
+
     }
 
 

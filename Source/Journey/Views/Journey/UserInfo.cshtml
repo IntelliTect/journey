@@ -9,7 +9,48 @@
 @section HeaderRight{
 }
 
-<div data-journey-script="user" id="user" style="width:200px;">
+<div data-journey-script="user" id="user" style="width:400px;">
     <div>Information about the user.</div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Home page refresh behavior
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <button id="fade-home-page-refresh" class="btn" 
+                        onclick="(function() {journey.fadeHomePageRefresh = false; journey.refresh()})()">
+                    No fade on home page refresh
+                </button>
+            </div>
+            <div class="form-group">
+                <button id="no-fade-home-page-refresh" class="btn" 
+                        onclick="(function() {journey.fadeHomePageRefresh = true; journey.refresh()})()">
+                    Fade on home page refresh
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<script>
+    journey.register("user", {
+        load:
+            function () {
+                if (journey.fadeHomePageRefresh) {
+                    $('#no-fade-home-page-refresh').addClass("btn-primary");
+                    $('#fade-home-page-refresh').addClass("btn-default");
+                    $('#no-fade-home-page-refresh').removeClass("btn-default");
+                    $('#fade-home-page-refresh').removeClass("btn-primary");
+                } else {
+                    $('#fade-home-page-refresh').addClass("btn-primary");
+                    $('#no-fade-home-page-refresh').addClass("btn-default");
+                    $('#fade-home-page-refresh').removeClass("btn-default");
+                    $('#no-fade-home-page-refresh').removeClass("btn-primary");
+                }
+            }
+    });
+
+</script>

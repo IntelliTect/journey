@@ -1,0 +1,29 @@
+﻿@model Journey.Controllers.EditorModel
+
+@{
+    ViewBag.Title = "ShowEditorValues";
+    Layout = "~/Views/Shared/_JourneyPage.cshtml";
+}
+
+@* Opening a new page after submit can either be done via this comment or via 
+    an attribute on the form element. *@
+<!-- OpenPageAfterSubmit='true' -->
+
+@section Header{
+    <span>Show Editor Values</span>
+}
+
+<div class="journey-page-body" style="width: 600px;">
+    <div class="panel panel-default">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+        </dl>
+    </div>
+</div>

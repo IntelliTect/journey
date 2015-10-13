@@ -27,7 +27,8 @@ function Journey() {
     var connectionBadWaitInSeconds = 5; // Seconds to wait before showing the bad connection message
     journey.isConnected = true;
     journey.pageLoadCallback = null;  // Set this to a function to have code run every time a page is loaded.
-
+    journey.fadeHomePageRefresh = true;  // Set to false to not fade the home page on refresh.
+    
     // Startup journey page that initializes the main page.
     $(function () {
         journey.setHeights();
@@ -247,6 +248,7 @@ function Journey() {
             // Make sure this is a good postback form
             if ($(form).attr("action")) {
                 var page = journeyPageById($(element).parents("div.journey-page").attr("id"));
+                var openResultantPage = $(form).attr("data-open-new-page");
                 // The extra _= that jQuery appends to make requests unique so IE refreshes correctly needs to be removed.
                 var url = $(form).attr("action").split("&_=")[0].split("?_=")[0];
                 if (form && url) {
@@ -273,8 +275,13 @@ function Journey() {
                                 // Reload the entire UI.
                                 location.reload();
                             } else if (result.trim() == "Journey Refresh Page") {
-                                // Blank page back, close it.
-                                refreshPages();
+                                // Refresh the current page. Close pages to the right.
+                                if (page) {
+                                    page.removePage(false, true, refreshPages);
+                                } else {
+                                    // This is the home page
+                                    removeAllJourneyPages(true, refreshPages);
+                                }
                             } else if (result.replace(/&amp;/g, "&").indexOf('action="' + url + '"') > -1) {
                                 // Replace the encoded ampersands above in the content coming back.
                                 // Replace the content of the page.
@@ -290,15 +297,27 @@ function Journey() {
                             } else {
                                 // Post the content as a page.'
                                 // Pull the URL from the page because Journey pages have these embedded.
+                                var pageUrl = getJourneyPageUrl(result);
+                                openResultantPage = openResultantPage ||
+                                    result.indexOf("<!-- OpenPageAfterSubmit='true' -->") >= 0;
                                 if (page) {  // If this doesn't exist, it is a home page.
-                                    var pageUrl = getJourneyPageUrl(result);
-                                    page.removePage(true, true);
-                                    journey.openJourneyPage(pageUrl);
-                                    refreshPages();
+                                    var removeSelf = (openResultantPage ? false : true);
+                                    page.removePage(removeSelf, true, function () {
+                                        journey.openJourneyPage(pageUrl);
+                                        refreshPages();
+                                    });
                                 } else {
                                     // This is the home page
-                                    homePage.runUnloadScript();
-                                    loadHomePageContent(result);
+                                    if (openResultantPage) {
+                                        removeAllJourneyPages(true, function () {
+                                            journey.openJourneyPage(pageUrl);
+                                            refreshPages();
+                                        });
+                                    } else {
+                                        removeAllJourneyPages(true);
+                                        homePage.runUnloadScript();
+                                        loadHomePageContent(result);
+                                    }
                                 }
                             }
                             journey.setHeights();
@@ -462,8 +481,12 @@ function Journey() {
         // Load the new page.
         homePage = new Page(url, function () {
             // Hide the one showing.
+            var targetOpacity = 0.5;
+            if (!journey.fadeHomePageRefresh) {
+                targetOpacity = 1;
+            }
             $('#journey-home-area').animate({
-                opacity: 0.5
+                opacity: targetOpacity
             }, 300, function () {
                 // Put the HTML on the page and run the load script.
                 loadHomePageContent(homePage.html);
@@ -476,6 +499,7 @@ function Journey() {
                     alert("Errors loading the page.");
                 }
             });
+
         });
     }
 
@@ -794,7 +818,7 @@ function Journey() {
             var actualIframeWidth = selfPage.desiredIframeWidth || "600px";
             if (selfPage.desiredIframeWidth) {
                 // This must return before the page can be loaded. 
-                setTimeout(function() {
+                setTimeout(function () {
                     // Set up the iframe.
                     selfPage.html = '<iframe src="' + selfPage.url + '" style="width: ' + actualIframeWidth + '; height: 100%;" frameborder="0"></iframe>';
                     clearTimeout(timeout);
