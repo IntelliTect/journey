@@ -440,18 +440,7 @@ function Journey() {
             var contentId = $(this).attr('data-content-id');
             var homeContentUrl = $(this).attr('data-home-content-url');
             if (contentId) {
-                // Fill the content of the popout based on the id
-                $('#journey-popout div.journey-inner-content').html($('#' + contentId).html());
-                $('#journey-popout div.journey-popout-title').html($(this).children('.journey-title').html());
-                // Call a method for setting up the popout
-                if (popoutSetupFunctions[contentId]) {
-                    popoutSetupFunctions[contentId]();
-                }
-                if (!popoutOpen) {
-                    openPopout();
-                } else {
-                    closePopout();
-                }
+                showPopout(contentId);
             } else if (homeContentUrl) {
                 // Load a new home page
                 closePopout();
@@ -471,6 +460,29 @@ function Journey() {
         // Click the default side-bar
         $("#journey-side-bar li.journey-default").click();
     }
+
+    //Show the specified pop out.
+    function showPopout(contentId) {
+        // Find the original element
+        
+        // Fill the content of the popout based on the id
+        $('#journey-popout div.journey-inner-content').html($('#' + contentId).html());
+        // Set the title from the name of the li.
+        $('#journey-popout div.journey-popout-title').html($('[data-content-id="' + contentId + '"]').children('.journey-title').html());
+        // Call a method for setting up the popout
+        if (popoutSetupFunctions[contentId]) {
+            popoutSetupFunctions[contentId]();
+        }
+        if (!popoutOpen) {
+            openPopout();
+        } else {
+            closePopout();
+        }
+    }
+
+    // Expose this externally.
+    journey.showPopout = showPopout;
+
 
     // Reload the home page from a URL.
     function loadHomePage(url) {
@@ -502,6 +514,9 @@ function Journey() {
 
         });
     }
+
+    // Publically expose loadHomePage
+    journey.loadHomePage = loadHomePage;
 
     // Set the content on the home page and run the load script.
     function loadHomePageContent(content) {
