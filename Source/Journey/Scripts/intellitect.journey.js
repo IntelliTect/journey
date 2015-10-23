@@ -28,7 +28,9 @@ function Journey() {
     journey.isConnected = true;
     journey.pageLoadCallback = null;  // Set this to a function to have code run every time a page is loaded.
     journey.fadeHomePageRefresh = true;  // Set to false to not fade the home page on refresh.
-    
+    var baseUrl = location.protocol + '//' + location.host + location.pathname;
+    journey.updateAddressBar = true;  // If true, the address bar gets updated with the current URL to rebuild the journey.
+
     // Startup journey page that initializes the main page.
     $(function () {
         journey.setHeights();
@@ -434,6 +436,35 @@ function Journey() {
         $('#journey-main-content').scrollTo({ left: location, top: 0 }, animationTime);
     };
 
+    journey.currentUrl = function () {
+        var urls = [];
+        $.each(journeyPages, function (i, page) {
+            // see if the first part of the URL matches regardless of case
+            var url = page.url;
+            if (url.toLowerCase().indexOf(baseUrl.toLowerCase()) >= 0) {
+                url = '~' + url.slice(baseUrl.length);
+            }
+            urls.push(encodeURIComponent(url));
+        });
+
+        var result = baseUrl + "?home=" + encodeURIComponent(homePage.url);
+        if (urls.length > 0 ) result += "&urls=" + urls.join('|');
+        return result;
+    }
+
+    // This only works if updateAddressBar == true;
+    journey.updateCurrentUrl = function () {
+        if (journey.updateAddressBar) {
+            // push the page to the history so we can go back.
+            var currentPage = journeyPages[journeyPages.length - 1];
+            if (currentPage) {
+                window.history.pushState({}, currentPage.title, journey.currentUrl());
+            } else {
+                window.history.pushState({}, "Home", journey.currentUrl());
+            }
+        }
+    }
+
     function setupPopout() {
         // Set the LIs to open it.
         $('#journey-side-bar li').click(function () {
@@ -456,15 +487,12 @@ function Journey() {
 
         // Set the close button
         $('#journey-popout div.journey-popout-control div.journey-popout-close').click(closePopout);
-
-        // Click the default side-bar
-        $("#journey-side-bar li.journey-default").click();
     }
 
     //Show the specified pop out.
     function showPopout(contentId) {
         // Find the original element
-        
+
         // Fill the content of the popout based on the id
         $('#journey-popout div.journey-inner-content').html($('#' + contentId).html());
         // Set the title from the name of the li.
@@ -510,6 +538,7 @@ function Journey() {
                 if (homePage.issues.length > 0) {
                     alert("Errors loading the page.");
                 }
+                journey.updateCurrentUrl();
             });
 
         });
@@ -664,11 +693,36 @@ function Journey() {
         $("#bad-connection-indicator").slideDown();
     }
 
+    // Do all the loading stuff after a short delay.
+    setTimeout(function() {
+        // Load the home page from the url
+        var queryStringHome = getParameterByName('home');
+        if (queryStringHome) {
+            queryStringHome = decodeURIComponent(queryStringHome);
+            queryStringHome = queryStringHome.replace(/~/g, baseUrl);
+            journey.loadHomePage(queryStringHome);
+        } else {
+            // Click the default side-bar to bring up the home page.
+            $("#journey-side-bar li.journey-default").click();
+        }
+
+        // Load the pages from the URL.
+        var queryStringUrls = getParameterByName('urls');
+        if (queryStringUrls) {
+            queryStringUrls = decodeURIComponent(queryStringUrls);
+            queryStringUrls = queryStringUrls.replace(/~/g, baseUrl);
+            journey.openJourneyPage(queryStringUrls);
+        }
+    }, 100);
+
+
+
 
 
     function JourneyPage(urlOrContent, callback, iframeWidth) {
         var selfJourneyPage = this;
         selfJourneyPage.url = "Unknown";
+        selfJourneyPage.title = "Unknown";
 
         // Did we get a url or a full page?
         if (urlOrContent.indexOf('<body>') > -1 || urlOrContent.indexOf('<div>') > -1) {
@@ -683,6 +737,7 @@ function Journey() {
             if (selfJourneyPage.page.html) {
                 selfJourneyPage.id = 'journey-page-' + selfJourneyPage.page.index;
                 selfJourneyPage.page.id = selfJourneyPage.id;
+                selfJourneyPage.title =
                 journeyPages.push(selfJourneyPage);
                 // Get the template
                 var pageHtml = $($("#journey-page-template").html());
@@ -726,6 +781,7 @@ function Journey() {
                     }
                 });
             }
+            journey.updateCurrentUrl();
         }
 
         // Refreshes the page.
@@ -808,6 +864,7 @@ function Journey() {
                     } else if (removePagesCallback) {
                         removePagesCallback();
                     }
+                    journey.updateCurrentUrl();
                 });
             } else if (removePagesCallback) {
                 removePagesCallback();
@@ -955,4 +1012,13 @@ if (!$(window).scrollTo) {
             return this;
         };
     }(jQuery));
+}
+
+
+// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
