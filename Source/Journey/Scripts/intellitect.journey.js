@@ -849,7 +849,7 @@ function Journey() {
         function removePages(pagesToRemove, removePagesCallback) {
             if (pagesToRemove && pagesToRemove.length > 0) {
                 var page = pagesToRemove[0];
-                selfJourneyPage.page.runUnloadScript();
+                page.page.runUnloadScript();
 
                 $('#' + page.id).animate({
                     opacity: 0
