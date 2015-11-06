@@ -1,27 +1,56 @@
-﻿/* Intellitect Journey framework core css */
+﻿#journey-main-content h1, #journey-main-content #journey-main-content h2, #journey-main-content #journey-main-content h3, #journey-main-content #journey-main-content h4 {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0; }
+
 body {
-  margin: 0px;
-  padding: 0px;
-}
-/* This works around a strange behavior with jQuery that reports a 
-    height back for style and script tags if somehow they have a 
-    display of block. This stops that. It makes the height calculations
-    off on pages where script or styles are inserted in line.
-    See: http://api.jquery.com/height/
-*/
-script,
+  margin: 0;
+  padding: 0; }
+
+script {
+  display: none !important; }
+
 style {
-  display: none !important;
-}
+  display: none !important; }
+
 div {
-  margin: 0px;
-  padding: 0px;
-}
+  margin: 0;
+  padding: 0; }
+  div.sidebar-scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 15px;
+    width: 116px; }
+  div.journey-data-content {
+    display: none; }
+  div.journey-home-header {
+    height: 90px;
+    margin-bottom: 20px;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding-left: 25px;
+    padding-right: 25px; }
+    div.journey-home-header div.journey-home-header-left {
+      float: left; }
+    div.journey-home-header div.journey-home-header-right {
+      float: right;
+      text-align: right;
+      padding-top: 40px; }
+    div.journey-home-header a.journey-avatar-menu-header img.journey-avatar {
+      height: 30px;
+      width: 30px;
+      float: right; }
+    div.journey-home-header a.journey-avatar-menu-header div.journey-avatar-text {
+      float: right;
+      margin-right: 5px; }
+  div.journey-avatar-timezone {
+    margin-top: 32px;
+    margin-right: 1px; }
+
 a {
   color: inherit;
-  text-decoration: inherit;
-  /* no underline */
-}
+  text-decoration: inherit; }
+
 #journey-busy-overlay {
   top: 0;
   right: 0;
@@ -29,20 +58,13 @@ a {
   height: 100%;
   position: fixed;
   text-align: center;
-  /* IE filter */
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
-  -moz-opacity: 0.5;
-  /* Mozilla extension */
-  -khtml-opacity: 0.5;
-  /* Safari/Conqueror extension */
   opacity: 0.5;
-  /* CSS3 */
   z-index: 1000;
-  background-color: white;
-}
-#journey-busy-overlay div.spinner {
-  margin: 0 auto;
-}
+  background-color: white; }
+  #journey-busy-overlay div.spinner {
+    margin: 0 auto; }
+
 #busy-fail-overlay {
   top: 0;
   right: 0;
@@ -50,305 +72,194 @@ a {
   height: 100%;
   position: fixed;
   text-align: center;
-  /* IE filter */
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
-  -moz-opacity: 0.95;
-  /* Mozilla extension */
-  -khtml-opacity: 0.95;
-  /* Safari/Conqueror extension */
   opacity: 0.95;
-  /* CSS3 */
   z-index: 1000;
-  background-color: black;
-}
-#busy-fail-overlay #busy-fail-overlay #busy-fail-overlay-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2em;
-  color: white;
-  padding: 25px;
-  border: 2px solid gray;
-  border-radius: 8px;
-}
+  background-color: black; }
+  #busy-fail-overlay #busy-fail-overlay #busy-fail-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: white;
+    padding: 25px;
+    border: 2px solid gray;
+    border-radius: 8px; }
+
 #journey-shell {
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
+
 #journey-side-bar {
   float: left;
   overflow-y: hidden;
-  overflow-x: hidden;
-}
-div.sidebar-scroller {
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 15px;
-  width: 116px;
-}
+  overflow-x: hidden; }
+  #journey-side-bar ul {
+    margin: 0;
+    padding: 0; }
+    #journey-side-bar ul li {
+      width: 100%;
+      margin-bottom: 3px; }
+      #journey-side-bar ul li div.journey-title {
+        text-align: center;
+        text-transform: uppercase; }
+
 #time-info {
   margin-top: 10px;
   width: 116px;
-  padding-right: 15px;
-}
-#time-info div {
-  width: 100%;
-  font-size: .8em;
-  text-align: center;
-}
+  padding-right: 15px; }
+  #time-info div {
+    width: 100%;
+    font-size: .8em;
+    text-align: center; }
+
 #connection-warning-area {
   width: 116px;
   padding-right: 15px;
-  height: 30px;
-}
-#connection-warning-area #bad-connection-indicator {
-  width: 100%;
-  text-align: center;
-  height: 30px;
-}
-#journey-side-bar ul {
-  margin: 0;
-  padding: 0;
-}
-#journey-side-bar ul li {
-  width: 100%;
-  margin-bottom: 3px;
-}
-#journey-side-bar ul li div.journey-title {
-  text-align: center;
-  text-transform: uppercase;
-}
+  height: 30px; }
+  #connection-warning-area #bad-connection-indicator {
+    width: 100%;
+    text-align: center;
+    height: 30px; }
+
 #journey-popout {
   position: absolute;
-  top: 0px;
-  z-index: 1000;
-}
-#journey-popout div.journey-popout-container {
-  width: 460px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-#journey-popout div.journey-popout-control {
-  width: 100%;
-  margin-bottom: 10px;
-  padding-top: 40px;
-}
-#journey-popout div.journey-popout-control div.journey-popout-title {
-  float: left;
-}
-#journey-popout div.journey-popout-control div.journey-popout-close {
-  float: right;
-  padding: 3px;
-}
-#journey-popout div.journey-inner-content {
-  width: 100%;
-  margin-top: 10px;
-}
-div.journey-data-content {
-  display: none;
-}
+  top: 0;
+  z-index: 1000; }
+  #journey-popout div.journey-popout-container {
+    width: 460px;
+    margin-left: 20px;
+    margin-right: 20px; }
+  #journey-popout div.journey-popout-control {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 40px; }
+    #journey-popout div.journey-popout-control div.journey-popout-title {
+      float: left; }
+    #journey-popout div.journey-popout-control div.journey-popout-close {
+      float: right;
+      padding: 3px; }
+  #journey-popout div.journey-inner-content {
+    width: 100%;
+    margin-top: 10px; }
+
 #journey-main-content {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  /* Used to keep everything going to the right. */
-  padding-right: 40px;
-}
-#journey-main-content h1,
-#journey-main-content #journey-main-content h2,
-#journey-main-content #journey-main-content h3,
-#journey-main-content #journey-main-content h4 {
-  font-weight: 400;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-#journey-main-content #journey-main-content-padding {
-  width: 1200px;
-  height: 200px;
-  background-color: transparent;
-  display: inline-block;
-}
-#journey-main-content div.journey-page-control {
-  width: 100%;
-  height: 0px;
-}
-#journey-main-content div.journey-page-control div.journey-tool-close {
-  float: right;
-  width: 20px;
-  margin-top: 7px;
-  margin-right: 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-  font-weight: bold;
-}
-#journey-main-content div.journey-page {
-  display: inline-block;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  margin-left: 3px;
-}
-#journey-main-content div.journey-page div.journey-page-content {
-  height: 100%;
-  width: 100%;
-}
-#journey-main-content div.journey-page div.journey-page-content div.journey-page-header {
-  height: 100px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  /* Make this appear at the bottom of the top area. */
-  display: table-cell;
-  vertical-align: bottom;
-  height: 90px;
-  width: 100%;
-  white-space: normal;
-}
-#journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-title {
-  width: 100%;
-}
-#journey-main-content div.journey-page div.journey-page-content div.journey-page-body {
-  white-space: normal;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-#journey-main-content #journey-home-area {
-  padding-left: 25px;
-  padding-right: 25px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  white-space: normal;
-}
-#journey-main-content #journey-busy-indicator {
-  width: 200px;
-  border-right: none;
-  height: 100%;
-}
-div.journey-home-header {
-  height: 90px;
-  margin-bottom: 20px;
-  margin-left: -25px;
-  margin-right: -25px;
-  padding-left: 25px;
-  padding-right: 25px;
-}
-div.journey-home-header div.journey-home-header-left {
-  float: left;
-}
-div.journey-home-header div.journey-home-header-right {
-  float: right;
-  text-align: right;
-  padding-top: 40px;
-}
-div.journey-home-header a.journey-avatar-menu-header img.journey-avatar {
-  height: 30px;
-  width: 30px;
-  float: right;
-}
-div.journey-home-header a.journey-avatar-menu-header div.journey-avatar-text {
-  float: right;
-  margin-right: 5px;
-}
-div.journey-avatar-timezone {
-  margin-top: 32px;
-  margin-right: 1px;
-}
+  padding-right: 40px; }
+  #journey-main-content #journey-main-content-padding {
+    width: 1200px;
+    height: 200px;
+    background-color: transparent;
+    display: inline-block; }
+  #journey-main-content div.journey-page-control {
+    width: 100%;
+    height: 0; }
+    #journey-main-content div.journey-page-control div.journey-tool-close {
+      float: right;
+      width: 20px;
+      margin-top: 7px;
+      margin-right: 5px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      text-align: center;
+      font-weight: bold; }
+  #journey-main-content div.journey-page {
+    display: inline-block;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin-left: 3px; }
+    #journey-main-content div.journey-page div.journey-page-content {
+      height: 100%;
+      width: 100%; }
+      #journey-main-content div.journey-page div.journey-page-content div.journey-page-header {
+        height: 100px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        display: table-cell;
+        vertical-align: bottom;
+        height: 90px;
+        width: 100%;
+        white-space: normal; }
+        #journey-main-content div.journey-page div.journey-page-content div.journey-page-header div.journey-title {
+          width: 100%; }
+      #journey-main-content div.journey-page div.journey-page-content div.journey-page-body {
+        white-space: normal;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+        overflow-x: hidden; }
+  #journey-main-content #journey-home-area {
+    padding-left: 25px;
+    padding-right: 25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: normal; }
+  #journey-main-content #journey-busy-indicator {
+    width: 200px;
+    border-right: none;
+    height: 100%; }
+
 .text-align-bottom {
-  display: -webkit-box;
-  -webkit-box-align: end;
-  -webkit-box-pack: left;
-  display: -moz-box;
-  -moz-box-align: end;
-  -moz-box-pack: left;
   display: box;
   box-align: end;
-  box-pack: left;
-}
+  box-pack: left; }
+
 .spinner {
   width: 300px;
   height: 18px;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 50px;
-}
-.spinner > div {
-  width: 14px;
-  height: 14px;
-  margin-left: 4px;
-  border-radius: 100%;
-  float: left;
-  -webkit-animation: bouncedelay 1.7s infinite ease-in-out;
-  animation: bouncedelay 1.7s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-.spinner .bounce3 {
-  -webkit-animation-delay: -0.7s;
-  animation-delay: -0.7s;
-}
-.spinner .bounce4 {
-  -webkit-animation-delay: -0.6s;
-  animation-delay: -0.6s;
-}
-.spinner .bounce5 {
-  -webkit-animation-delay: -0.5s;
-  animation-delay: -0.5s;
-}
-.spinner .bounce6 {
-  -webkit-animation-delay: -0.4s;
-  animation-delay: -0.4s;
-}
-.spinner .bounce7 {
-  -webkit-animation-delay: -0.3s;
-  animation-delay: -0.3s;
-}
-.spinner .bounce8 {
-  -webkit-animation-delay: -0.2s;
-  animation-delay: -0.2s;
-}
-.spinner .bounce9 {
-  -webkit-animation-delay: -0.1s;
-  animation-delay: -0.1s;
-}
-.spinner .bounce10 {
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-}
+  margin-left: 50px; }
+  .spinner > div {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    border-radius: 100%;
+    float: left;
+    animation: bouncedelay 1.7s infinite ease-in-out;
+    animation-fill-mode: both; }
+  .spinner .bounce1 {
+    animation-delay: -0.9s; }
+  .spinner .bounce2 {
+    animation-delay: -0.8s; }
+  .spinner .bounce3 {
+    animation-delay: -0.7s; }
+  .spinner .bounce4 {
+    animation-delay: -0.6s; }
+  .spinner .bounce5 {
+    animation-delay: -0.5s; }
+  .spinner .bounce6 {
+    animation-delay: -0.4s; }
+  .spinner .bounce7 {
+    animation-delay: -0.3s; }
+  .spinner .bounce8 {
+    animation-delay: -0.2s; }
+  .spinner .bounce9 {
+    animation-delay: -0.1s; }
+  .spinner .bounce10 {
+    animation-delay: 0s; }
+
 @-webkit-keyframes bouncedelay {
-  0%,
-  40%,
-  100% {
-    -webkit-transform: scale(0.4);
-  }
-  15% {
-    -webkit-transform: scale(1);
-  }
-}
+  0% { }
+  40% { }
+  100% { }
+  15% { } }
+
 @keyframes bouncedelay {
-  0%,
-  40%,
+  0% {
+    transform: scale(0.4); }
+  40% {
+    transform: scale(0.4); }
   100% {
-    transform: scale(0.4);
-    -webkit-transform: scale(0.2);
-  }
+    transform: scale(0.4); }
   15% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-}
+    transform: scale(1); } }
+
