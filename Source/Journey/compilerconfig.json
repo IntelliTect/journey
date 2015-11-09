@@ -10,5 +10,17 @@
   {
     "outputFile": "Content/journey/intellitect.journey.theme.50.css",
     "inputFile": "Content/journey/intellitect.journey.theme.50.less"
+  },
+  {
+    "outputFile": "Content/journey/intellitect.journey.css",
+    "inputFile": "Content/journey/intellitect.journey.scss"
+  },
+  {
+    "outputFile": "Content/journey/intellitect.journey.theme.50.css",
+    "inputFile": "Content/journey/intellitect.journey.theme.50.scss"
+  },
+  {
+    "outputFile": "Content/journey/intellitect.journey.theme.css",
+    "inputFile": "Content/journey/intellitect.journey.theme.scss"
   }
 ]

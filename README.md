@@ -16,8 +16,11 @@ You can see a sample site here: [Journey Demo](http://journeydemo.azurewebsites.
 
 ![Journey Screenshot](JourneyScreenShot.jpg "Journey Screenshot")
 
+##Recent Changes (check the wiki for more details)
+   1. Iframes are now supported.
+   2. By default the address bar now updates with a URL that can be sent to someone else to open the pages. This is still under development and may change a bit before being finalized.
+
 ###Note
 Here is a short list of some of the features that are planned: 
    1. We continue to find and address navigation issues that were not forseen use cases.
    2. We would really like this to be responsive, but it isn't as of yet. (scaling well to non-desktop devices)
-   3. Opening pages from external web sites can hihack the styling and functionality of the page. An Iframe option is coming.

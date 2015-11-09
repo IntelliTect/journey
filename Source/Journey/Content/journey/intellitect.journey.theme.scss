@@ -1,0 +1,163 @@
+﻿//colors
+$color_log_cabin_approx: #202020;
+$color_suva_gray_approx: #888;
+$black:  black;
+$red: red;
+$color_mine_shaft_approx: #333;
+$color_tuatara_approx: #363636;
+$color_silver_chalice_approx: #aaa;
+$color_alto_approx: #ddd;
+$white_10: rgba(255, 255, 255, 0.1);
+$color_celeste_approx: #ccc;
+$color_tundora_approx: #444;
+$color_storm_dust_approx: #666;
+$color_fuscous_gray_approx: #555;
+$color_kashmir_blue_approx: #469;
+$color_wedgewood_approx: #57a;
+$black_50: rgba(0, 0, 0, 0.5);
+$white: white;
+
+// width of menu
+$menu_width: 100px !default;
+$menu_font_size: .7em !default;
+
+//fonts
+$font_0: Segoe UI;
+$font_1: Frutiger;
+$font_2: Frutiger Linotype;
+$font_3: Dejavu Sans;
+$font_4: Helvetica Neue;
+$font_5: Arial;
+$font_6: sans-serif;
+
+body {
+	font-family: $font_0, $font_1, $font_2, $font_3, $font_4, $font_5, $font_6;
+}
+#journey-shell {
+	background-color: $color_log_cabin_approx;
+	color: $color_suva_gray_approx;
+}
+#journey-side-bar {
+	background-color: $color_log_cabin_approx;
+	border-left: 1px solid $black;
+	width: $menu_width;
+	ul {
+		width: $menu_width + 16px;
+		padding-top: 10px;
+		li {
+			border-bottom: 2px groove $color_mine_shaft_approx;
+			border-top: 2px groove $color_mine_shaft_approx;
+			font-size: $menu_font_size;
+			height: $menu_width;
+			&:hover {
+				background-color: $color_tuatara_approx;
+			}
+			img {
+				width: $menu_width/2;
+				height: $menu_width/2;
+				margin-left: $menu_width/4;
+				margin-top: $menu_width/8;
+			}
+			div.journey-title {
+				margin-top: 4px;
+				color: $color_silver_chalice_approx;
+				width: $menu_width;
+				font-size: 1em;
+			}
+		}
+	}
+	#connection-warning-area #bad-connection-indicator {
+		font-size: 1em;
+		color: $red;
+	}
+}
+#journey-popout {
+	background-color: $color_tuatara_approx;
+	opacity: .97;
+	left: 101px;
+	div.journey-popout-control {
+		font-size: 1.5em;
+		div.journey-popout-close {
+			font-size: .9em;
+			font-weight: bold;
+			&:hover {
+				color: $color_alto_approx;
+				cursor: pointer;
+				background-color: $color_log_cabin_approx;
+				background-color: $white_10;
+				font-weight: bolder;
+			}
+		}
+	}
+}
+#journey-main-content {
+	left: $menu_width;
+	h1 {
+		font-weight: 400;
+	}
+	h2 {
+		font-weight: 400;
+	}
+	h3 {
+		font-weight: 400;
+	}
+	h4 {
+		font-weight: 400;
+	}
+	div {
+		&.journey-page {
+			border-left: 0 solid $color_suva_gray_approx;
+			border-right: 0 solid $color_suva_gray_approx;
+			div.journey-page-content div {
+				&.journey-page-body {
+					background: linear-gradient(to right, $color_tundora_approx, $color_storm_dust_approx);
+					color: $color_log_cabin_approx;
+				}
+				&.journey-page-header div {
+					&.journey-title {
+						font-size: 1.5em;
+						color: $color_alto_approx;
+					}
+					&.journey-subtitle {
+						font-size: 1.1em;
+						color: $color_celeste_approx;
+					}
+				}
+			}
+		}
+		&.journey-page-control {
+			background-color: $black;
+			div.journey-tool-close:hover {
+				color: $color_alto_approx;
+				cursor: pointer;
+				background-color: $color_log_cabin_approx;
+				background-color: $white_10;
+				font-weight: bolder;
+			}
+		}
+		&.journey-page-content {
+			background: linear-gradient(to right, $color_mine_shaft_approx, $color_fuscous_gray_approx);
+		}
+	}
+	#journey-home-area {
+		background: linear-gradient(to right, $color_kashmir_blue_approx, $color_wedgewood_approx);
+	}
+}
+div {
+	&.journey-home-header {
+		background-color: transparent;
+		background-color: $black_50;
+		a.journey-avatar-menu-header div.journey-avatar-text {
+			font-size: .7em;
+		}
+	}
+	&.journey-avatar-text {
+		color: $white;
+	}
+	&.journey-avatar-timezone {
+		font-size: .9em;
+	}
+}
+.spinner > div {
+	background-color: $color_storm_dust_approx;
+}
