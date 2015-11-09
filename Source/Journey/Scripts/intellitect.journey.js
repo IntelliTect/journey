@@ -448,7 +448,7 @@ function Journey() {
         });
 
         var result = baseUrl + "?home=" + encodeURIComponent(homePage.url);
-        if (urls.length > 0 ) result += "&urls=" + urls.join('|');
+        if (urls.length > 0) result += "&urls=" + urls.join('|');
         return result;
     }
 
@@ -487,6 +487,25 @@ function Journey() {
 
         // Set the close button
         $('#journey-popout div.journey-popout-control div.journey-popout-close').click(closePopout);
+
+        // Load the home page from the url
+        var queryStringHome = getParameterByName('home');
+        if (queryStringHome) {
+            queryStringHome = decodeURIComponent(queryStringHome);
+            queryStringHome = queryStringHome.replace(/~/g, baseUrl);
+            journey.loadHomePage(queryStringHome);
+        } else {
+            // Click the default side-bar to bring up the home page.
+            $("#journey-side-bar li.journey-default").click();
+        }
+
+        // Load the pages from the URL.
+        var queryStringUrls = getParameterByName('urls');
+        if (queryStringUrls) {
+            queryStringUrls = decodeURIComponent(queryStringUrls);
+            queryStringUrls = queryStringUrls.replace(/~/g, baseUrl);
+            journey.openJourneyPage(queryStringUrls);
+        }
     }
 
     //Show the specified pop out.
@@ -692,31 +711,6 @@ function Journey() {
         connectionBadTimeout = 0;
         $("#bad-connection-indicator").slideDown();
     }
-
-    // Do all the loading stuff after a short delay.
-    setTimeout(function() {
-        // Load the home page from the url
-        var queryStringHome = getParameterByName('home');
-        if (queryStringHome) {
-            queryStringHome = decodeURIComponent(queryStringHome);
-            queryStringHome = queryStringHome.replace(/~/g, baseUrl);
-            journey.loadHomePage(queryStringHome);
-        } else {
-            // Click the default side-bar to bring up the home page.
-            $("#journey-side-bar li.journey-default").click();
-        }
-
-        // Load the pages from the URL.
-        var queryStringUrls = getParameterByName('urls');
-        if (queryStringUrls) {
-            queryStringUrls = decodeURIComponent(queryStringUrls);
-            queryStringUrls = queryStringUrls.replace(/~/g, baseUrl);
-            journey.openJourneyPage(queryStringUrls);
-        }
-    }, 100);
-
-
-
 
 
     function JourneyPage(urlOrContent, callback, iframeWidth) {
