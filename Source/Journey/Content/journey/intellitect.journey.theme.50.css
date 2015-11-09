@@ -16,14 +16,14 @@
       border-bottom: 2px groove #333;
       border-top: 2px groove #333;
       font-size: 0.5em;
-      height: 60px; }
+      height: 50px; }
       #journey-side-bar ul li:hover {
         background-color: #363636; }
       #journey-side-bar ul li img {
         width: 25px;
         height: 25px;
         margin-left: 12.5px;
-        margin-top: 8.33333px; }
+        margin-top: 6.25px; }
       #journey-side-bar ul li div.journey-title {
         margin-top: 4px;
         color: #aaa;
@@ -32,6 +32,9 @@
   #journey-side-bar #connection-warning-area #bad-connection-indicator {
     font-size: 1em;
     color: red; }
+
+#connection-warning-area {
+  width: 66px; }
 
 #journey-popout {
   background-color: #363636;

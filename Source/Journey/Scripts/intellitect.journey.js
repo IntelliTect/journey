@@ -30,6 +30,7 @@ function Journey() {
     journey.fadeHomePageRefresh = true;  // Set to false to not fade the home page on refresh.
     var baseUrl = location.protocol + '//' + location.host + location.pathname;
     journey.updateAddressBar = true;  // If true, the address bar gets updated with the current URL to rebuild the journey.
+    journey.showBreadcrumbs = true;  // If true breadcrumbs are shown. 
 
     // Startup journey page that initializes the main page.
     $(function () {
@@ -385,6 +386,15 @@ function Journey() {
         journey.setHeights();
     }
 
+    journey.setBreadcrumbs = function () {
+        $('#journey-breadcrumbs ul').empty();
+        if (homePage) {
+            $('#journey-breadcrumbs ul').append('<li><a href="' + homePage.url + '">' + homePage.title + '</a></li>');
+        }
+        $.each(journeyPages, function (index, page) {
+            $('#journey-breadcrumbs ul').append('<li><a href="' + page.url + '">' + page.title + '</a></li>');
+        });
+    }
 
     // Resize the divs to work right.
     journey.setHeights = function () {
@@ -463,6 +473,8 @@ function Journey() {
                 window.history.pushState({}, "Home", journey.currentUrl());
             }
         }
+        journey.setBreadcrumbs()
+
     }
 
     function setupPopout() {
@@ -552,6 +564,8 @@ function Journey() {
         // Load the page into the home container
         $('#journey-home-area').html(content);
         homePage.id = "journey-home-area";
+        homePage.title = $(content).find('.journey-home-header-left, .journey-title').text();
+
         // Run the load script.
         homePage.runLoadScript();
     }
@@ -737,7 +751,6 @@ function Journey() {
             if (selfJourneyPage.page.html) {
                 selfJourneyPage.id = 'journey-page-' + selfJourneyPage.page.index;
                 selfJourneyPage.page.id = selfJourneyPage.id;
-                selfJourneyPage.title =
                 journeyPages.push(selfJourneyPage);
                 // Get the template
                 var pageHtml = $($("#journey-page-template").html());
@@ -745,10 +758,10 @@ function Journey() {
                 // Insert the content in the page.
                 pageHtml.attr('id', selfJourneyPage.id);
                 pageHtml.children('div.journey-page-content').html(selfJourneyPage.page.html);
+                selfJourneyPage.title = $(pageHtml).find('.journey-home-header-left, .journey-title').text();
 
 
                 // Insert the page into the main content area.
-                //$('#journey-main-content').append(pageHtml);
                 pageHtml.insertBefore('#journey-main-content-padding');
                 // Make sure this height is set right.
                 journey.setHeights();

@@ -33,6 +33,9 @@
     font-size: 1em;
     color: red; }
 
+#connection-warning-area {
+  width: 116px; }
+
 #journey-popout {
   background-color: #363636;
   opacity: .97;

@@ -115,7 +115,6 @@ a {
     text-align: center; }
 
 #connection-warning-area {
-  width: 116px;
   padding-right: 15px;
   height: 30px; }
   #connection-warning-area #bad-connection-indicator {
@@ -210,6 +209,28 @@ a {
   display: box;
   box-align: end;
   box-pack: left; }
+
+#journey-breadcrumbs {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to right, #2c2c2c, #222);
+  font-size: 1.3em;
+  padding-top: 13px;
+  margin-right: 0px;
+  margin-left: 3px; }
+  #journey-breadcrumbs ul {
+    margin-left: 10px;
+    height: 100%;
+    padding-left: 10px; }
+    #journey-breadcrumbs ul li {
+      width: auto;
+      height: 100%;
+      display: inline-block; }
+      #journey-breadcrumbs ul li a {
+        color: white; }
+    #journey-breadcrumbs ul :not(:last-child)::after {
+      content: ":";
+      color: whitesmoke; }
 
 .spinner {
   width: 300px;
