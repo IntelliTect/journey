@@ -160,6 +160,15 @@ function Journey() {
     // Element refers to the element used to open the page. This will allow the framework
     // to close pages beyond the page that was used to open this page.
     journey.openJourneyPage = function (url, element, callback, iframeWidth) {
+        // Make sure we have a URL to open
+        if (!url) {
+            console.warn("You are attempting to open a page without specifying a URL. \n\
+This often happens because no <!-- URL='[page url here]' --> was specified in the incoming HTML from a post redirect.\n\
+The solution is to use the _JourneyPage.cshtml layout page or include the Page URL comment in the page.");
+            alert("No page URL was found.  \nPlease contact a system administrator with details about the process you followed to get to this message.");
+            journey.hideBusyOverlay();
+            return;
+        }
         // Check for multiple URLs
         // See if we have more than one page to open
         var urls = splitUrl(url);
