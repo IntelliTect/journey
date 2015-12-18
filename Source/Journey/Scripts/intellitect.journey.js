@@ -253,7 +253,7 @@ The solution is to use the _JourneyPage.cshtml layout page or include the Page U
             }
             return false; // prevent default action and stop event propagation
 
-        } else if ($(element).attr("type") == "submit" && $(element).parents("form").length > 0) {
+        } else if ($(element).attr("type") && $(element).attr("type").toLowerCase() == "submit" && $(element).parents("form").length > 0) {
             // This is a submit button, handle it via ajax
             var form = $(element).parents("form")[0];
             // Make sure this is a good postback form
