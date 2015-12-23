@@ -19,6 +19,7 @@ You can see a sample site here: [Journey Demo](http://journeydemo.azurewebsites.
 ##Recent Changes (check the wiki for more details)
    1. Iframes are now supported.
    2. By default the address bar now updates with a URL that can be sent to someone else to open the pages. This is still under development and may change a bit before being finalized.
+   3. The home page will now load before any other page loads. This happens when refreshing and using a Journey URL that contains all the pages that are open.
 
 ###Note
 Here is a short list of some of the features that are planned: 
