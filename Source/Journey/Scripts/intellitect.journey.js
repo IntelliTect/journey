@@ -502,19 +502,20 @@ The solution is to use the _JourneyPage.cshtml layout page or include the Page U
         if (queryStringHome) {
             queryStringHome = decodeURIComponent(queryStringHome);
             queryStringHome = queryStringHome.replace(/~/g, baseUrl);
-            journey.loadHomePage(queryStringHome);
+            journey.loadHomePage(queryStringHome, function () {
+                // Load the pages from the URL.
+                var queryStringUrls = getParameterByName('urls');
+                if (queryStringUrls) {
+                    queryStringUrls = decodeURIComponent(queryStringUrls);
+                    queryStringUrls = queryStringUrls.replace(/~/g, baseUrl);
+                    journey.openJourneyPage(queryStringUrls);
+                }
+            });
         } else {
             // Click the default side-bar to bring up the home page.
             $("#journey-side-bar li.journey-default").click();
         }
 
-        // Load the pages from the URL.
-        var queryStringUrls = getParameterByName('urls');
-        if (queryStringUrls) {
-            queryStringUrls = decodeURIComponent(queryStringUrls);
-            queryStringUrls = queryStringUrls.replace(/~/g, baseUrl);
-            journey.openJourneyPage(queryStringUrls);
-        }
     }
 
     //Show the specified pop out.
@@ -541,7 +542,7 @@ The solution is to use the _JourneyPage.cshtml layout page or include the Page U
 
 
     // Reload the home page from a URL.
-    function loadHomePage(url) {
+    function loadHomePage(url, callback) {
         if (homePage) {
             homePage.runUnloadScript();
         }
@@ -566,6 +567,10 @@ The solution is to use the _JourneyPage.cshtml layout page or include the Page U
                 if (homePage.issues.length > 0) {
                     alert("Errors loading the page.");
                 }
+
+                // Call the callback
+                if ($.isFunction(callback)) callback();
+
                 journey.updateCurrentUrl();
             });
 
